@@ -7,7 +7,17 @@ Panda Linux is an open-source and free operating system.
 
 ## Installation Instructions
 
-Run the `install.sh` script and follow the instructions.
+- Before starting the installer, configure your system by issuing
+
+```sh
+bash configure.sh
+```
+
+- Now, start your installation and follow the on screen instructions.
+
+```sh
+./install.sh
+```
 
 Well, that's it ;)
 
