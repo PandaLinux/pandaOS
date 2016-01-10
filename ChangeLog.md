@@ -1,5 +1,8 @@
 # Change Log
 
+### Sunday, 10. January 2016
+- Removed `TODO.md` and moved it to github.
+
 ### Monday, 04. January 2016
 - Removed `set -e`. As it was uncessarily exiting the scripts upon compilation.
 - Completed `phase 1` of the setup.
