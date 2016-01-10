@@ -16,7 +16,7 @@ configureInstall() {
 EOF
 
       echo -e "Download Packages?"
-      select yn $yn in
+      select yn in "Yes" "No"; do
 	  case $yn in
 		Yes ) 
 			# Download All the packages
@@ -77,7 +77,7 @@ EOF
       # Start Installations
       for i in {1..4}
       do
-	  cd "$MOUNT_POINT/phase${i}" && ./init.sh
+	  cd "$MOUNT_POINT/phase${i}" && bash init.sh
       done
 
       # Unmount the filesystem
