@@ -51,9 +51,7 @@ function enterChrootTmp() {
     /tools/bin/bash -c "$@"
     
     sync
-    sleep 1
-    
-    sudo rm -rf /tmp/*
+    sleep 1        
     
     sudo umount -l "$MOUNT_POINT/run"
     sudo umount -l "$MOUNT_POINT/sys"
@@ -80,9 +78,7 @@ function enterChroot() {
     /bin/bash -c "$@"
     
     sync
-    sleep 1
-    
-    sudo rm -rf /tmp/*
+    sleep 1  
     
     sudo umount -l "$MOUNT_POINT/run"
     sudo umount -l "$MOUNT_POINT/sys"
