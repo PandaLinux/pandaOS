@@ -22,14 +22,6 @@ EOF
      echo -e "Filesystem: "
      read FILESYSTEM
      echo "export FILE_SYSTEM=${FILESYSTEM}" >> "${PWD}/config"
-
-#     echo -e "Turn on debug mode (Not yet supported)?"
-#     select yn in "Yes" "No"; do
-#         case $yn in
-#             Yes ) echo 'export DEBUG=TRUE' >> "${PWD}/config";break;;
-#             No ) echo 'export DEBUG=FALSE' >> "${PWD}/config";break;;
-#         esac
-#     done
     
     echo -e "Turn on checks?"
     select yn in "Yes" "No"; do
