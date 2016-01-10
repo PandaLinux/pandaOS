@@ -1,0 +1,98 @@
+Submitted By:            Douglas R. Reno
+Date:                    2015-08-03
+Initial Package Version: 224
+Upstream Status:         Not applicable
+Origin:                  Self
+Description:             Make it install compat pkg-config files without
+                         building compat-libs which are useless on LFS.
+
+diff -Naurp systemd-224/Makefile.am systemd-224-new/Makefile.am
+--- systemd-224/Makefile.am	2015-08-01 01:08:13.286434787 -0500
++++ systemd-224-new/Makefile.am	2015-08-03 12:29:06.232511581 -0500
+@@ -4,7 +4,7 @@
+ #
+ #  Copyright 2010-2012 Lennart Poettering
+ #  Copyright 2010-2012 Kay Sievers
+-#  Copyright 2013 Zbigniew J??drzejewski-Szmek
++#  Copyright 2013 Zbigniew J??drzejewski-Szmek
+ #  Copyright 2013 David Strauss
+ #
+ #  systemd is free software; you can redistribute it and/or modify it
+@@ -2964,6 +2964,10 @@ UNINSTALL_EXEC_HOOKS += libsystemd-unins
+ 
+ pkgconfiglib_DATA += \
+ 	src/libsystemd/libsystemd.pc
++	src/compat-libs/libsystemd-journal.pc \
++	src/compat-libs/libsystemd-login.pc \
++	src/compat-libs/libsystemd-id128.pc \
++	src/compat-libs/libsystemd-daemon.pc
+ 
+ pkginclude_HEADERS += \
+ 	src/systemd/sd-bus.h \
+@@ -5581,12 +5585,6 @@ lib_LTLIBRARIES += \
+ 	libsystemd-id128.la \
+ 	libsystemd-daemon.la
+ 
+-pkgconfiglib_DATA += \
+-	src/compat-libs/libsystemd-journal.pc \
+-	src/compat-libs/libsystemd-login.pc \
+-	src/compat-libs/libsystemd-id128.pc \
+-	src/compat-libs/libsystemd-daemon.pc
+-
+ # move lib from $(libdir) to $(rootlibdir) and update devel link, if needed
+ compat-lib-install-hook:
+ 	libname=libsystemd-login.so && $(move-to-rootlibdir)
+@@ -6060,7 +6058,7 @@ check-api-docs: exported man
+ 		if test -f $(builddir)/man/$$symbol.html ; then \
+ 			echo "  Symbol $$symbol() is documented." ; \
+ 		else \
+-			echo "??? Symbol $$symbol() lacks documentation." ; \
++			echo "??? Symbol $$symbol() lacks documentation." ; \
+ 		fi ; \
+ 	done
+ 
+diff -Naurp systemd-224/Makefile.in systemd-224-new/Makefile.in
+--- systemd-224/Makefile.in	2015-08-01 01:36:41.763374742 -0500
++++ systemd-224-new/Makefile.in	2015-08-03 12:47:37.978472508 -0500
+@@ -20,7 +20,7 @@
+ #
+ #  Copyright 2010-2012 Lennart Poettering
+ #  Copyright 2010-2012 Kay Sievers
+-#  Copyright 2013 Zbigniew J??drzejewski-Szmek
++#  Copyright 2013 Zbigniew J??drzejewski-Szmek
+ #  Copyright 2013 David Strauss
+ #
+ #  systemd is free software; you can redistribute it and/or modify it
+@@ -1216,12 +1216,6 @@ systemgenerator_PROGRAMS = systemd-getty
+ @ENABLE_COMPAT_LIBS_TRUE@	libsystemd-id128.la \
+ @ENABLE_COMPAT_LIBS_TRUE@	libsystemd-daemon.la
+ 
+-@ENABLE_COMPAT_LIBS_TRUE@am__append_299 = \
+-@ENABLE_COMPAT_LIBS_TRUE@	src/compat-libs/libsystemd-journal.pc \
+-@ENABLE_COMPAT_LIBS_TRUE@	src/compat-libs/libsystemd-login.pc \
+-@ENABLE_COMPAT_LIBS_TRUE@	src/compat-libs/libsystemd-id128.pc \
+-@ENABLE_COMPAT_LIBS_TRUE@	src/compat-libs/libsystemd-daemon.pc
+-
+ @ENABLE_COMPAT_LIBS_TRUE@am__append_300 = compat-lib-install-hook
+ @ENABLE_COMPAT_LIBS_TRUE@am__append_301 = compat-lib-uninstall-hook
+ @ENABLE_MANPAGES_TRUE@am__append_302 = \
+@@ -4854,6 +4848,10 @@ EXTRA_DIST = shell-completion/bash/syste
+ 	src/libsystemd/sd-bus/DIFFERENCES \
+ 	src/libsystemd/sd-bus/GVARIANT-SERIALIZATION \
+ 	src/libudev/libudev.pc.in rules/99-systemd.rules.in \
++  src/compat-libs/libsystemd-journal.pc \
++  src/compat-libs/libsystemd-login.pc \
++  src/compat-libs/libsystemd-id128.pc \
++  src/compat-libs/libsystemd-daemon.pc src/libudev/libudev.pc \
+ 	src/udev/udev.pc.in units/systemd-udevd.service.in \
+ 	units/systemd-udev-trigger.service.in \
+ 	units/systemd-udev-settle.service.in \
+@@ -21121,7 +21119,7 @@ check-api-docs: exported man
+ 		if test -f $(builddir)/man/$$symbol.html ; then \
+ 			echo "  Symbol $$symbol() is documented." ; \
+ 		else \
+-			echo "??? Symbol $$symbol() lacks documentation." ; \
++			echo "??? Symbol $$symbol() lacks documentation." ; \
+ 		fi ; \
+ 	done
+ 
