@@ -2,6 +2,7 @@
 
 ### Sunday, 10. January 2016
 - Removed `TODO.md` and moved it to github.
+- Added user input for downloading packages in the `install.sh` file.
 
 ### Monday, 04. January 2016
 - Removed `set -e`. As it was uncessarily exiting the scripts upon compilation.
