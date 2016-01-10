@@ -89,4 +89,4 @@ EOF
     chmod -v 600  /var/log/btmp
 }
 
-prepare;build;instal;
+build;instal;
