@@ -15,7 +15,6 @@ for i in ${_list[@]}; do
                         echo "tcl --> Already Built"
                     else
                         echo "Building---> tcl"
-                        chmod +x build.sh
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> tcl completed"
                         touch DONE
@@ -31,7 +30,6 @@ for i in ${_list[@]}; do
                         echo "expect --> Already Built"
                     else
                         echo "Building---> expect"
-                        chmod +x build.sh
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> expect completed"
                         touch DONE
@@ -47,7 +45,6 @@ for i in ${_list[@]}; do
                         echo "dejagnu --> Already Built"
                     else
                         echo "Building---> dejagnu"
-                        chmod +x build.sh
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> dejagnu completed"
                         touch DONE
@@ -61,7 +58,6 @@ for i in ${_list[@]}; do
                     echo "${i} --> Already Built"
                 else
                     echo "Building---> ${i}"
-                    chmod +x build.sh
                     ( ./build.sh |& tee build.log ) || false
                     echo "Build ---> ${i} completed"
                     touch DONE

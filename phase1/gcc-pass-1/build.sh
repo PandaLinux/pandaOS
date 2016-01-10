@@ -98,7 +98,7 @@ function build() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}" "${BUILD_DIR}" "${PKG_GMP}-6.0.0" "${PKG_MPFR}-${PKG_MPFR_VERSION}" "${PKG_MPC}-${PKG_MPC_VERSION}"
+    rm -rf "${SRC_DIR}"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean

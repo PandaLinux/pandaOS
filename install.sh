@@ -30,15 +30,7 @@ EOF
             No ) echo 'export MAKE_CHECK=FALSE' >> "${PWD}/config";break;;
         esac
     done
-    
-#     echo -e "Turn on colors (Not yet supported)?"
-#     select yn in "Yes" "No"; do
-#         case $yn in
-#             Yes ) echo 'export SHOW_COLORS=TRUE' >> "${PWD}/config";break;;
-#             No ) echo 'export SHOW_COLORS=FALSE' >> "${PWD}/config";break;;
-#         esac
-#     done
-    
+        
     echo -e "Turn on parallelism?"
     select yn in "Yes" "No"; do
         case $yn in
@@ -74,14 +66,10 @@ EOF
     sudo ln -s "${MOUNT_POINT}/tools" /
 
     # Start Installations
-    cd "${MOUNT_POINT}/phase1"
-    bash init.sh
-    cd "${MOUNT_POINT}/phase2"
-    bash init.sh
-    cd "${MOUNT_POINT}/phase3"
-    bash init.sh
-    cd "${MOUNT_POINT}/phase4"
-    bash init.sh
+    for i in {1..4}
+    do
+	cd "$MOUNT_POINT/phase${i}" && ./init.sh
+    done
 
    # Unmount the filesystem
    umountFs
