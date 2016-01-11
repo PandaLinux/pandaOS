@@ -19,8 +19,12 @@ bash configure.sh
 ./install.sh
 ```
 
-Well, that's it ;)
+- Use the following credentials to login after installation
 
+```
+Username: root
+Password:  temppwd
+```
 ## Donate
 
 Buy me a cup of coffee.
