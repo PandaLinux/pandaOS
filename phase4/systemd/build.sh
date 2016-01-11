@@ -54,7 +54,7 @@ function instal() {
     rm -rfv /usr/lib/rpm
     sed -i "s:0775 root lock:0755 root root:g" /usr/lib/tmpfiles.d/legacy.conf
     
-    cat >> /etc/pam.d/system-session << "EOF" &&
+    cat >> /etc/pam.d/system-session << "EOF"
 # Begin Systemd addition
     
 session   required    pam_loginuid.so
