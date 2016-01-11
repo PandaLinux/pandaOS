@@ -36,7 +36,7 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install &&
-    mkdir -pv /etc/X11/xorg.conf.d
+    mkdir -pv /etc/X11/xorg.conf.d   
 }
 
 function clean() {

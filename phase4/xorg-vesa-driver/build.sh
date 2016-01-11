@@ -30,7 +30,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL install
+    make $MAKE_PARALLEL install    
 }
 
 function clean() {
