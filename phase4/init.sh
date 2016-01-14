@@ -5,7 +5,7 @@ shopt -s -o pipefail
 
 source "$MOUNT_POINT/common/functions.sh"
 
-_list=(nettle libtasn1 gnutls wget xorg-init util-macros xorg-protocol-headers libXau libXdmcp python2 libxml2 xcb-proto check libxcb freetype harfbuzz freetype fontconfig xorg-libraries xcb-util xcb-util-image xcb-util-keysyms xcb-util-renderutil xcb-util-wm libpciaccess libdrm elfutils libva libvdpau libffi llvm wayland mesa libva libvdpau xbitmaps libpng xorg-applications xcursor-themes xorg-fonts libxslt xkeyboard-config pixman libepoxy cracklib linux-pam shadow zip nspr js pcre glib polkit systemd xorg-server libevdev mtdev xorg-evdev-driver xorg-synaptics-driver xorg-ati-driver xorg-fbdev-driver xorg-intel-driver xorg-nouveau-driver xorg-vesa-driver linux-kernel twm xterm xclock xinit)
+_list=()
 
 for i in ${_list[@]}; do
     case $i in
