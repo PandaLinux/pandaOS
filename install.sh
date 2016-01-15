@@ -57,9 +57,9 @@ EOF
       echo 'export TARGET="$(uname -m)-panda-linux-gnu"' >> "${PWD}/config"
       echo 'export PATH=/tools/bin:/bin:/usr/bin' >> "${PWD}/config"
       echo 'export LC_ALL=POSIX' >> "${PWD}/config"
-      echo 'export VM_LINUZ=vmlinuz-4.2-systemd' >> "${PWD}/config"
-      echo 'export SYSTEM_MAP=System.map-4.2' >> "${PWD}/config"
-      echo 'export CONFIG_BACKUP=config-4.2' >> "${PWD}/config"
+      echo 'export VM_LINUZ=vmlinuz-shell-0.1-systemd' >> "${PWD}/config"
+      echo 'export SYSTEM_MAP=System.map-shell-0.1' >> "${PWD}/config"
+      echo 'export CONFIG_BACKUP=config-shell-0.1' >> "${PWD}/config"
     
       # Make all the configurations available
       source "${PWD}/config"
