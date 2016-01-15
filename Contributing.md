@@ -1,5 +1,5 @@
 # How to contribute
-I'm really glad you're reading this, because we need volunteer developers to help this project come to fruition.
+I'm really glad you're reading this, because we need volunteer developers to help this project come to fruition. There are many wany in which you can help us out.
 
 ## Testing
 
@@ -16,3 +16,13 @@ $ git commit -m "A brief summary of the commit
 > 
 > A paragraph describing what changed and its impact."
 ```
+
+## Documentation
+
+You can also write documentation and wikis for our project and help our customers with their queries.
+
+## Donate
+
+If you are not a coder and still want to contribute to our project, you can help us stay up at night. Just click on the donate button below.
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZJDFMDKR9X6P8)
