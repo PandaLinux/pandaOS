@@ -22,7 +22,7 @@ EOF
 			# Download All the packages
 			wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
 			pushd "$PWD/source"
-			md5sum -c md5sums
+			md5sum -c ../md5sums
 			popd;
 			break;;
 		No )
