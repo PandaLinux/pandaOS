@@ -25,7 +25,7 @@ Password:  temppwd
 ```
 ## Contribute
 
-Read our [Contributing Guidelines](Contributing.md) for more information.
+Read our [how to contribute guidelines](Contributing.md) for more information.
 
 ## Donate
 
