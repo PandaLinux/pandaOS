@@ -5,7 +5,9 @@ Panda Linux is an open-source and free operating system. It is a 64-bit OS for x
 
 ## Installation Instructions
 
-- Before starting the installer, configure your system by issuing
+Panda Linux can only be built on a `64-bit x86 Linux` distribution. Please note that this means the `x86_64` or `amd64` version, not the 32-bit `i386` version.
+
+- First, install the prerequisite packages and configure your system to run the installer:
 
 ```sh
 bash configure.sh
@@ -25,7 +27,7 @@ Password:  temppwd
 ```
 ## Contribute
 
-Read our [how to contribute guidelines](Contributing.md) for more information.
+Read our [Contributing Guidelines](Contributing.md) for more information.
 
 ## Donate
 
