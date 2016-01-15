@@ -3,6 +3,7 @@
 ### Friday, 15. January 2016
 - This branch contains the bare minimum.
 - The packages related to GUI have been stripped off.
+- Fixed md5sum file not found
 
 ### Sunday, 10. January 2016
 - Removed `TODO.md` and moved it to github.
