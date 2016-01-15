@@ -20,11 +20,9 @@ EOF
 	  case $yn in
 		Yes ) 
 			# Download All the packages
-			wget --input-file=wget-list-phase1 --continue --directory-prefix="$PWD/source"
-			wget --input-file=wget-list-phase3 --continue --directory-prefix="$PWD/source"
+			wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
 			pushd "$PWD/source"
-			md5sum -c md5sums-phase1
-			md5sum -c md5sums-phase3
+			md5sum -c md5sums
 			popd;
 			break;;
 		No )
@@ -75,7 +73,7 @@ EOF
       sudo ln -s "${MOUNT_POINT}/tools" /
 
       # Start Installations
-      for i in {1..4}
+      for i in {1..3}
       do
 	  cd "$MOUNT_POINT/phase${i}" && bash init.sh
       done

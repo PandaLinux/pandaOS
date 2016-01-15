@@ -1,5 +1,9 @@
 # Change Log
 
+### Friday, 15. January 2016
+- This branch contains the bare minimum.
+- The packages related to GUI have been stripped off.
+
 ### Sunday, 10. January 2016
 - Removed `TODO.md` and moved it to github.
 - Added user input for downloading packages in the `install.sh` file.
