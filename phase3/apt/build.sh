@@ -42,7 +42,7 @@ function check() {
 function instal() {
 	cp -rv bin/apt* /usr/bin &&
 	cp -rv bin/libapt* /usr/lib &&
-	mkdir -pv /etc/apt/{apt.conf.d,sources.list.d} &&
+	mkdir -pv /etc/apt/{apt.conf.d,sources.list.d,preferences.d} &&
 	mkdir -pv /usr/lib/apt &&
 	cp -rv bin/methods /usr/lib/apt &&
     cat > /etc/apt/sources.list << "EOF"
