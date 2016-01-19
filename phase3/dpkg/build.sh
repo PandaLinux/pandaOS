@@ -32,7 +32,10 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    touch /usr/var/lib/${PKG_NAME}/{status,available}}
+    touch /usr/var/lib/${PKG_NAME}/{status,available} &&
+    mkdir -pv /var/lib/${PKG_NAME} &&
+    touch /var/lib/${PKG_NAME}/status
+}
 
 function clean() {
     rm -rf "${SRC_DIR}"
