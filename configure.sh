@@ -4,7 +4,7 @@
 sudo apt-get update && sudo apt-get upgrade --yes --force-yes
 
 # Install GCC 5
-sudo apt-get install --yes --force-yes bash binutils bison bzip2 coreutils diffutils findutils gawk grep gzip m4 make patch perl sed tar texinfo xz-utils
+sudo apt-get install --yes --force-yes bash binutils bison bzip2 coreutils diffutils findutils gawk grep gzip m4 make patch perl sed tar texinfo unzip xz-utils
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
 sudo apt-get update
 sudo apt-get install --yes --force-yes gcc-5 g++-5

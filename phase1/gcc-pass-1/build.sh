@@ -98,7 +98,7 @@ function build() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean

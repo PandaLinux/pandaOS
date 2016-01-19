@@ -3,11 +3,11 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="automake"
-PKG_VERSION="1.15"
+PKG_NAME="unzip"
+PKG_VERSION="60"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
+TARBALL="${PKG_NAME}${PKG_VERSION}.tar.gz"
+SRC_DIR="${PKG_NAME}${PKG_VERSION}"
 
 function prepare() {
     if [[ ! -f "${TARBALL}" ]]
@@ -21,19 +21,16 @@ function unpack() {
 }
 
 function build() {
-    sed -i 's:/\\\${:/\\\$\\{:' bin/automake.in
-    ./configure --prefix=/usr \
-		--docdir=/usr/share/doc/automake-1.15
-    make $MAKE_PARALLEL
+	make $MAKE_PARALLEL -f unix/Makefile generic
 }
 
 function check() {
-    sed -i "s:./configure:LEXLIB=/usr/lib/libfl.a &:" t/lex-{clean,depend}-cxx.sh
-    make $MAKE_PARALLEL check
+    echo " "
 }
 
 function instal() {
-    make $MAKE_PARALLEL install
+	make prefix=/usr MANDIR=/usr/share/man/man1 \
+		 -f unix/Makefile $MAKE_PARALLEL install
 }
 
 function clean() {

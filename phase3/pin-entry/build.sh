@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="automake"
-PKG_VERSION="1.15"
+PKG_NAME="pinentry"
+PKG_VERSION="0.9.5"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -21,15 +21,13 @@ function unpack() {
 }
 
 function build() {
-    sed -i 's:/\\\${:/\\\$\\{:' bin/automake.in
-    ./configure --prefix=/usr \
-		--docdir=/usr/share/doc/automake-1.15
+	sed -i 's:ncursesw/::' pinentry/pinentry-curses.c &&    
+    ./configure --prefix=/usr &&
     make $MAKE_PARALLEL
 }
 
 function check() {
-    sed -i "s:./configure:LEXLIB=/usr/lib/libfl.a &:" t/lex-{clean,depend}-cxx.sh
-    make $MAKE_PARALLEL check
+    echo " "
 }
 
 function instal() {

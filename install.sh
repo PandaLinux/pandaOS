@@ -20,9 +20,13 @@ EOF
 	  case $yn in
 		Yes ) 
 			# Download All the packages
-			wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
+			wget --input-file=wget-list-phase1 --continue --directory-prefix="$PWD/source"
+			wget --input-file=wget-list-phase3 --continue --directory-prefix="$PWD/source"
+			# Fix apt package name for builds
+			mv "$PWD/source/1.1.0.zip" "$PWD/source/apt-1.1.10.zip"
 			pushd "$PWD/source"
-			md5sum -c ../md5sums
+			md5sum -c md5sums-phase1
+			md5sum -c md5sums-phase3
 			popd;
 			break;;
 		No )
@@ -57,9 +61,9 @@ EOF
       echo 'export TARGET="$(uname -m)-panda-linux-gnu"' >> "${PWD}/config"
       echo 'export PATH=/tools/bin:/bin:/usr/bin' >> "${PWD}/config"
       echo 'export LC_ALL=POSIX' >> "${PWD}/config"
-      echo 'export VM_LINUZ=vmlinuz-shell-0.1-systemd' >> "${PWD}/config"
-      echo 'export SYSTEM_MAP=System.map-shell-0.1' >> "${PWD}/config"
-      echo 'export CONFIG_BACKUP=config-shell-0.1' >> "${PWD}/config"
+      echo 'export VM_LINUZ=vmlinuz-4.2-systemd' >> "${PWD}/config"
+      echo 'export SYSTEM_MAP=System.map-4.2' >> "${PWD}/config"
+      echo 'export CONFIG_BACKUP=config-4.2' >> "${PWD}/config"
     
       # Make all the configurations available
       source "${PWD}/config"

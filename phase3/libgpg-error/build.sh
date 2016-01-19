@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="automake"
-PKG_VERSION="1.15"
+PKG_NAME="libgpg-error"
+PKG_VERSION="1.20"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -20,20 +20,21 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {
-    sed -i 's:/\\\${:/\\\$\\{:' bin/automake.in
-    ./configure --prefix=/usr \
-		--docdir=/usr/share/doc/automake-1.15
+function build() {    
+    ./configure --prefix=/usr --disable-static &&
     make $MAKE_PARALLEL
 }
 
 function check() {
-    sed -i "s:./configure:LEXLIB=/usr/lib/libfl.a &:" t/lex-{clean,depend}-cxx.sh
     make $MAKE_PARALLEL check
 }
 
 function instal() {
-    make $MAKE_PARALLEL install
+    make $MAKE_PARALLEL install &&
+	install -v -m644 -D README /usr/share/doc/${PKG_NAME}-${PKG_VERSION}/README
+	
+	mv -v /usr/lib/libgpg-error.so.* /lib
+	ln -sfv ../../../lib/$(readlink /usr/lib/libgpg-error.so) /usr/lib/libgpg-error.so
 }
 
 function clean() {
