@@ -72,3 +72,9 @@ c9a0a77f71fdc6b0f925bc3e79eb77f6  curl-7.45.0.tar.lzma
 38dd619b2e77cbac69b99f52a053d25a  openssl-1.0.2d.tar.gz
 d2e4455781a70140ae83b54ca594ce21  wget-1.16.3.tar.xz
 93dbd1e47c136179ff1b01494c1c0e75  sudo-1.8.14p3.tar.gz
+d5cbb97673b99ca234507b74bfe8a29e  gnupg-2.1.7.tar.bz2
+9cb4a25331a4c4db866a31cbe507c793  pth-2.0.7.tar.gz
+a5dd3c57fca254935f5cf8db26e39065  libksba-1.3.3.tar.bz2
+6290e750ee87be3bfd9579fc44c6a186  libassuan-2.2.1.tar.bz2
+55439c4436b59573a29e144916ee5b61  pinentry-0.9.5.tar.bz2
+226bac7374b9466c6ec26b1c34dab844  npth-1.2.tar.bz2
