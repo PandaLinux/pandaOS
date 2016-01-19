@@ -5,7 +5,7 @@ shopt -s -o pipefail
 
 source "$MOUNT_POINT/common/functions.sh"
 
-_list=(bash network clock inputrc shell fstab linux-kernel grub lsb lsb-release dpkg unzip openssl wget cert curl apt)
+_list=(bash network clock inputrc shell fstab linux-kernel grub lsb lsb-release sudo dpkg unzip openssl wget cert curl apt)
 
 for i in ${_list[@]}; do
     case $i in
