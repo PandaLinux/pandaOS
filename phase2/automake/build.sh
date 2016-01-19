@@ -20,7 +20,7 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {    
+function build() {
     sed -i 's:/\\\${:/\\\$\\{:' bin/automake.in
     ./configure --prefix=/usr \
 		--docdir=/usr/share/doc/automake-1.15
