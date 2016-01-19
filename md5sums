@@ -68,3 +68,6 @@ b5e2dd95dc8498cea5354377ed89aa65  xz-5.2.1.tar.xz
 30537ef5a01e0ca94b7b8eb6a36bb1e4  lsb-release-1.4.tar.gz
 6182243466941aa7dc5249a50300fa4f  apt-1.1.0.zip
 62b490407489521db863b523a7f86375  unzip60.tar.gz
+c9a0a77f71fdc6b0f925bc3e79eb77f6  curl-7.45.0.tar.lzma
+38dd619b2e77cbac69b99f52a053d25a  openssl-1.0.2d.tar.gz
+d2e4455781a70140ae83b54ca594ce21  wget-1.16.3.tar.xz

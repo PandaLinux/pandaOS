@@ -68,3 +68,6 @@ http://www.zlib.net/zlib-1.2.8.tar.xz
 http://sourceforge.net/projects/lsb/files/lsb_release/1.4/lsb-release-1.4.tar.gz
 https://github.com/Debian/apt/archive/1.1.10.zip
 http://downloads.sourceforge.net/infozip/unzip60.tar.gz
+http://curl.haxx.se/download/curl-7.45.0.tar.lzma
+ftp://ftp.openssl.org/source/openssl-1.0.2d.tar.gz
+ftp://ftp.gnu.org/gnu/wget/wget-1.16.3.tar.xz
