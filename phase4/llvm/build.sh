@@ -6,8 +6,9 @@ shopt -s -o pipefail
 PKG_NAME="llvm"
 PKG_VERSION="3.7.0"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.src.tar.gz"
-SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.src.tar.xz"
+SRC_DIR="${PKG_NAME}-${PKG_VERSION}.src"
+BUILD_DIR="${PKG_NAME}-build"
 
 function prepare() {
     if [[ ! -f "${TARBALL}" ]]
@@ -23,9 +24,12 @@ function unpack() {
 function build() {
 	sed -e "s:/docs/llvm:/share/doc/${PKG_NAME}-${PKG_VERSION}:" \
 	    -i Makefile.config.in &&
+	    
+	mkdir "$BUILD_DIR" &&
+	cd "$BUILD_DIR"
 
 	CC=gcc CXX=g++                   \
-	./configure --prefix=/usr        \
+	../configure --prefix=/usr       \
     	        --sysconfdir=/etc    \
     	        --enable-libffi      \
     	        --enable-optimized   \
@@ -49,7 +53,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

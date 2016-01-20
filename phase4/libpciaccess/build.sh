@@ -6,7 +6,7 @@ shopt -s -o pipefail
 PKG_NAME="libpciaccess"
 PKG_VERSION="0.13.4"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {

@@ -6,7 +6,7 @@ shopt -s -o pipefail
 PKG_NAME="mesa"
 PKG_VERSION="11.0.2"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
