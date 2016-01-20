@@ -26,6 +26,13 @@ Username: root
 Password:  temppwd
 ```
 
+## System Requirements
+
+- Minimum `10 GB` hard disk with `ext4` filesystem
+- Minimum `4 GB` RAM
+- Currently only compatible with `AMD Raedon` and `Intel Graphics` chipsets.
+- Works only on `64-Bit` systems
+
 ## Bug tracker
 
 Have a bug or a feature request? [Please open a new issue](https://github.com/PandaLinux/pandaOS/issues/new). Before opening any issue, please search for existing issues.
