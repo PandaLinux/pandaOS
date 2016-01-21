@@ -16,6 +16,7 @@ function umountFs() {
     echo " "
     sudo umount -l "$FILESYSTEM" && echo "$FILESYSTEM is now unmounted" || echo "Unable to unmount $FILESYSTEM"
     echo " "
+    sudo rm -rfv "${MOUNT_POINT}"
     echo "ALL DONE!"
     echo " "
 }
