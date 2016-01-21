@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 source "$MOUNT_POINT/common/functions.sh"
-echo 'export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin' >> "$MOUNT_POINT/config"
+echo 'export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin' >> "$MOUNT_POINT/.config"
 
 mkdir -pv $MOUNT_POINT/{dev,proc,sys,run}
 
@@ -19,7 +19,7 @@ for i in ${_list[@]}; do
                     echo "${i} --> Already Built"
                 else
                     echo "Building---> ${i}"
-                    enterChrootTmp "source config && cd /phase2/$i && (bash build.sh |& tee build.log ) || false"
+                    enterChrootTmp "source ~/.config && cd /phase2/$i && (bash build.sh |& tee build.log ) || false"
                     echo "Build ---> ${i} completed"
                     touch DONE
                 fi
