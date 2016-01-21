@@ -1,3 +1,0 @@
-language: bash
-bash configure.sh
-bash install.sh
