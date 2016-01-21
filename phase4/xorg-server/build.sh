@@ -35,6 +35,9 @@ function check() {
 function instal() {
 	make $MAKE_PARALLEL install &&
 	mkdir -pv /etc/X11/xorg.conf.d
+	
+	# Sometimes permissions get messed up
+	chmod +s /usr/bin/Xorg
 }
 
 function clean() {
