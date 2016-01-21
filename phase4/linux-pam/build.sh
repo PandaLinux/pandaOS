@@ -6,7 +6,7 @@ shopt -s -o pipefail
 PKG_NAME="Linux-PAM"
 PKG_VERSION="1.2.1"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
