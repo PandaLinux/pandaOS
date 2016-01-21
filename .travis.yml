@@ -1,0 +1,3 @@
+language: bash
+before_script: configure.sh
+script: install.sh
