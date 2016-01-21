@@ -20,13 +20,11 @@ EOF
 	  case $yn in
 		Yes ) 
 			# Download All the packages
-			wget --input-file=wget-list-phase1 --continue --directory-prefix="$PWD/source"
-			wget --input-file=wget-list-phase3 --continue --directory-prefix="$PWD/source"
+			wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
 			# Fix apt package name for builds
 			mv "$PWD/source/1.1.0.zip" "$PWD/source/apt-1.1.10.zip"
 			pushd "$PWD/source"
-			md5sum -c md5sums-phase1
-			md5sum -c md5sums-phase3
+			md5sum -c md5sums
 			popd;
 			break;;
 		No )
