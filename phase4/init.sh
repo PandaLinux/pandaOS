@@ -16,7 +16,7 @@ for i in ${_list[@]}; do
                     echo "${i} --> Already Built"
                 else
                     echo "Building---> ${i}"
-                    enterChroot "source ~/.config && source /phase4/exports && cd /phase4/$i && (bash build.sh |& tee build.log ) || false"
+                    enterChroot "source /.config && source /phase4/exports && cd /phase4/$i && (bash build.sh |& tee build.log ) || false"
                     echo "Build ---> ${i} completed"
                     touch DONE
                 fi

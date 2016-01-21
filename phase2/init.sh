@@ -19,7 +19,7 @@ for i in ${_list[@]}; do
                     echo "${i} --> Already Built"
                 else
                     echo "Building---> ${i}"
-                    enterChrootTmp "source ~/.config && cd /phase2/$i && (bash build.sh |& tee build.log ) || false"
+                    enterChrootTmp "source /.config && cd /phase2/$i && (bash build.sh |& tee build.log ) || false"
                     echo "Build ---> ${i} completed"
                     touch DONE
                 fi
