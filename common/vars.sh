@@ -7,4 +7,4 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 FILESYSTEM=""
-MOUNT_POINT=""
+MOUNT_POINT="/mnt/panda-linux"

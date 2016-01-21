@@ -34,8 +34,6 @@ EOF
 	  esac
       done
 
-      echo -e "Moint Point: "
-      read MOUNT_POINT
       echo "export MOUNT_POINT=${MOUNT_POINT}" >> "${PWD}/config"
     
       echo -e "Filesystem: "
