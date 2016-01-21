@@ -70,6 +70,7 @@ EOF
     
       # Copy the data
       cp -ur ./* "${MOUNT_POINT}"
+      cp -ur "${PWD}"/.config "${MOUNT_POINT}"
       # Create /tools
       mkdir "${MOUNT_POINT}/tools"
       sudo ln -s "${MOUNT_POINT}/tools" /
