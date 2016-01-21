@@ -93,4 +93,4 @@ function build() {
 	done
 }
 
-prepare;pushd proto;check;build;popd
+prepare;pushd app;check;build;popd
