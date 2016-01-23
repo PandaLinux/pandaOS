@@ -30,7 +30,7 @@ Password:  temppwd
 
 - Minimum `10 GB` hard disk with `ext4` filesystem
 - Minimum `4 GB` RAM
-- Currently only compatible with `AMD Raedon` and `Intel Graphics` chipsets.
+- Currently only compatible with `Intel Graphics` chipsets.
 - Works only on `64-Bit` systems
 
 ## Bug tracker
