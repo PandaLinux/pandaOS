@@ -7,14 +7,4 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 FILESYSTEM=""
-MOUNT_POINT=""
-
-COLOR_RED='\e[0;31m'
-COLOR_GREEN='\e[0;32m'
-COLOR_YELLOW='\e[0;33m'
-COLOR_BLUE='\e[0;34m'
-COLOR_BOLD_RED='\e[1;31m'
-COLOR_BOLD_GREEN='\e[1;32m'
-COLOR_BOLD_YELLOW='\e[1;33m'
-COLOR_BOLD_BLUE='\e[1;34m'
-COLOR_RESET='\e[0m'
+MOUNT_POINT="/mnt/panda-linux"

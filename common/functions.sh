@@ -1,17 +1,5 @@
 #!/bin/sh
 
-function disable_color() {
-    COLOR_RED=''
-    COLOR_GREEN=''
-    COLOR_YELLOW=''
-    COLOR_BLUE=''
-    COLOR_BOLD_RED=''
-    COLOR_BOLD_GREEN=''
-    COLOR_BOLD_YELLOW=''
-    COLOR_BOLD_BLUE=''
-    COLOR_RESET=''
-}
-
 # Safely mount the filesystems
 function mountFs() {
     echo " "
@@ -28,6 +16,7 @@ function umountFs() {
     echo " "
     sudo umount -l "$FILESYSTEM" && echo "$FILESYSTEM is now unmounted" || echo "Unable to unmount $FILESYSTEM"
     echo " "
+    sudo rm -rfv "${MOUNT_POINT}"
     echo "ALL DONE!"
     echo " "
 }

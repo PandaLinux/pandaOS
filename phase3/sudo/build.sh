@@ -39,6 +39,25 @@ function check() {
 function instal() {
     make $MAKE_PARALLEL install &&
 	ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
+	
+	cat > /etc/pam.d/sudo << "EOF"
+# Begin /etc/pam.d/sudo
+
+# include the default auth settings
+auth      include     system-auth
+
+# include the default account settings
+account   include     system-account
+
+# Set default environment variables for the service user
+session   required    pam_env.so
+
+# include system session defaults
+session   include     system-session
+
+# End /etc/pam.d/sudo
+EOF
+chmod 644 /etc/pam.d/sudo
 }
 
 function clean() {
