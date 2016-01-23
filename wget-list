@@ -66,7 +66,7 @@ http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 http://tukaani.org/xz/xz-5.2.1.tar.xz
 http://www.zlib.net/zlib-1.2.8.tar.xz
 http://sourceforge.net/projects/lsb/files/lsb_release/1.4/lsb-release-1.4.tar.gz
-https://github.com/Debian/apt/archive/1.1.10.zip
+http://http.debian.net/debian/pool/main/a/apt/apt_1.2.tar.xz
 http://downloads.sourceforge.net/infozip/unzip60.tar.gz
 http://curl.haxx.se/download/curl-7.45.0.tar.lzma
 ftp://ftp.openssl.org/source/openssl-1.0.2d.tar.gz
@@ -125,3 +125,4 @@ ftp://ftp.x.org/pub/individual/driver/xf86-video-intel-2.99.917.tar.bz2
 ftp://ftp.x.org/pub/individual/app/twm-1.0.9.tar.bz2
 ftp://invisible-island.net/xterm/xterm-320.tgz
 ftp://ftp.x.org/pub/individual/app/xinit-1.3.4.tar.bz2
+ftp://ftp.gnu.org/gnu/which/which-2.21.tar.gz

@@ -4,39 +4,44 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="apt"
-PKG_VERSION="1.1.10"
+PKG_VERSION="1.2"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.zip"
+TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 BUILD_DIR="${PKG_NAME}-build"
 
 function prepare() {
     if [[ ! -f "${TARBALL}" ]]
     then
-        ln -sv "../../source/$TARBALL" "$TARBALL"
+        ln -sv "/source/$TARBALL" "$TARBALL"
     fi
 }
 
 function unpack() {
-    unzip -q ${TARBALL}
+    tar xf ${TARBALL}
 }
 
 function build() {
-	automake --add-missing
-	aclocal -I buildlib
-	autoconf
-	touch buildlib/config.rpath
+	pushd buildlib
+		wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
+		wget -O config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
+		touch config.rpath
+	popd
+	
+	wget -c http://ftp.debian.org/debian/pool/main/g/gtest/libgtest-dev_1.7.0-3_amd64.deb
+	
+	dpkg -i libgtest-dev_1.7.0-3_amd64.deb
 
-    mkdir "${BUILD_DIR}" &&
-    cd "${BUILD_DIR}"
-    
-    ../configure --prefix=/usr \
-    			 --docdir=/usr/share/doc/${PKG_NAME}-${PKG_VERSION} &&
-    make -j1
+	./configure
+    make $MAKE_PARALLEL
 }
 
 function check() {
-	echo " "
+	pushd test
+		pushd libapt
+			make -j1 test
+		popd
+	popd
 }
 
 function instal() {
@@ -45,6 +50,7 @@ function instal() {
 	mkdir -pv /etc/apt/{apt.conf.d,sources.list.d,preferences.d} &&
 	mkdir -pv /usr/lib/apt &&
 	cp -rv bin/methods /usr/lib/apt &&
+	sudo /sbin/ldconfig &&
     cat > /etc/apt/sources.list << "EOF"
 ## Begin /etc/apt/sources.list
 
@@ -53,13 +59,14 @@ deb-src http://panda-linux.esy.es/ftp/panda black main
 
 ## End /etc/apt/sources.list
 EOF
+	
 
 	sudo wget -q http://panda-linux.esy.es/ftp/panda/panda-key.gpg -O- | sudo apt-key add -
-	sudo apt-get update
+	sudo apt update
 }
 
 function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;
