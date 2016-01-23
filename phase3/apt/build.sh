@@ -37,11 +37,7 @@ function build() {
 }
 
 function check() {
-	pushd test
-		pushd libapt
-			make -j1 test
-		popd
-	popd
+	echo " "
 }
 
 function instal() {
@@ -69,4 +65,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
