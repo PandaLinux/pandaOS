@@ -104,7 +104,7 @@ http://xcb.freedesktop.org/dist/xcb-util-image-0.4.0.tar.bz2
 http://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.0.tar.bz2
 http://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.9.tar.bz2
 http://xcb.freedesktop.org/dist/xcb-util-wm-0.4.1.tar.bz2
-ftp://ftp.freedesktop.org/pub/mesa/11.0.2/mesa-11.0.2.tar.bz2
+ftp://ftp.freedesktop.org/pub/mesa/11.0.2/mesa-11.0.2.tar.xz
 http://dri.freedesktop.org/libdrm/libdrm-2.4.65.tar.bz2
 https://fedorahosted.org/releases/e/l/elfutils/0.164/elfutils-0.164.tar.bz2
 http://llvm.org/releases/3.7.0/llvm-3.7.0.src.tar.xz

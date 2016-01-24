@@ -99,7 +99,7 @@ f97a65e6158775de518ac391935634c2  libxcb-1.11.1.tar.bz2
 1022293083eec9e62d5659261c29e367  xcb-util-keysyms-0.4.0.tar.bz2
 468b119c94da910e1291f3ffab91019a  xcb-util-renderutil-0.3.9.tar.bz2
 87b19a1cd7bfcb65a24e36c300e03129  xcb-util-wm-0.4.1.tar.bz2
-2b3369d64481c1f72ce2d88f7acdb0fb  mesa-11.0.2.tar.bz2
+2b3369d64481c1f72ce2d88f7acdb0fb  mesa-11.0.2.tar.xz
 543b2d28359ef33974fa0e772dd61732  libdrm-2.4.65.tar.bz2
 2e4536c1c48034f188a80789a59114d8  elfutils-0.164.tar.bz2
 b98b9495e5655a672dbcb83e1a180f8e  llvm-3.7.0.src.tar.xz
