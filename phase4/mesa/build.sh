@@ -6,7 +6,7 @@ shopt -s -o pipefail
 PKG_NAME="mesa"
 PKG_VERSION="11.0.2"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -27,7 +27,6 @@ function build() {
     	        --enable-texture-float       \
     	        --enable-gles1               \
     	        --enable-gles2               \
-    	        --enable-xa                  \
     	        --enable-glx-tls             \
     	        --enable-osmesa              \
     	        --with-egl-platforms="drm,x11,wayland" \
