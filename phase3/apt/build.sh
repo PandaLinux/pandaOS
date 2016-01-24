@@ -46,7 +46,6 @@ function instal() {
 	mkdir -pv /etc/apt/{apt.conf.d,sources.list.d,preferences.d} &&
 	mkdir -pv /usr/lib/apt &&
 	cp -rv bin/methods /usr/lib/apt &&
-	sudo /sbin/ldconfig &&
     cat > /etc/apt/sources.list << "EOF"
 ## Begin /etc/apt/sources.list
 
@@ -56,8 +55,10 @@ deb-src http://panda-linux.esy.es/ftp/panda black main
 ## End /etc/apt/sources.list
 EOF
 	
+	# Add the sandbox user '_apt'
+	sudo useradd -r -M --system _apt
 
-	sudo wget -q http://panda-linux.esy.es/ftp/panda/panda-key.gpg -O- | sudo apt-key add -
+	sudo wget http://panda-linux.esy.es/ftp/panda/panda-key.gpg -O- | sudo apt-key add -
 	sudo apt update
 }
 
