@@ -22,7 +22,7 @@ for i in ${_list[@]}; do
 					echo "Build ---> tcl completed"
 					touch DONE
 				fi
-			popd;;
+			popd
 		fi ;;
             
 	expect ) 
@@ -37,7 +37,7 @@ for i in ${_list[@]}; do
 				    echo "Build ---> expect completed"
 					touch DONE
 				fi
-			popd;;
+			popd
 		fi ;;
             
 	dejagnu ) 
@@ -52,7 +52,7 @@ for i in ${_list[@]}; do
 					echo "Build ---> dejagnu completed"
 					touch DONE
 				fi
-			popd;;
+			popd
 		fi ;;
 
 	* ) 
