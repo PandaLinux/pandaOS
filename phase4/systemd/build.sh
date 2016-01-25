@@ -47,6 +47,7 @@ function check() {
 }
 
 function instal() {
+	systemctl start rescue.target
 	make $MAKE_PARALLEL install
 	
 	mv -v /usr/lib/libnss_{myhostname,mymachines,resolve}.so.2 /lib
