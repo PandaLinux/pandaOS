@@ -20,9 +20,16 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {    
+function build() {
+	patch -p0 -i ../dpkg-gzip-rsyncable.patch
     autoreconf -f -i
-    ./configure --prefix=/usr	&&
+    ./configure --prefix=/usr 				\
+    			--sysconfdir=/etc 			\
+    			--localstatedir=/var		\
+    			--sbindir=/usr/bin			\
+    			--disable-start-stop-daemon	\
+    			--with-zlib					\
+    			--with-liblzma				&&
     make $MAKE_PARALLEL
 }
 
@@ -32,9 +39,7 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    touch /usr/var/lib/${PKG_NAME}/{status,available} &&
-    mkdir -pv /var/lib/${PKG_NAME} &&
-    touch /var/lib/${PKG_NAME}/status
+    touch /var/lib/${PKG_NAME}/{status,available}
 }
 
 function clean() {
