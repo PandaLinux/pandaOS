@@ -21,8 +21,6 @@ EOF
 		Yes ) 
 			# Download All the packages
 			wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
-			# Fix apt package name for builds
-			mv "$PWD/source/1.1.0.zip" "$PWD/source/apt-1.1.10.zip"
 			pushd "$PWD/source"
 			md5sum -c md5sums
 			popd;
@@ -74,7 +72,7 @@ EOF
       sudo ln -s "${MOUNT_POINT}/tools" /
 
       # Start Installations
-      for i in {1..4}
+      for i in {1..5}
       do
 	  cd "$MOUNT_POINT/phase${i}" && bash init.sh
       done
