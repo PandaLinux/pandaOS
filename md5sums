@@ -66,7 +66,7 @@ af4813fe3952362451201ced6fbce379  XML-Parser-2.44.tar.gz
 b5e2dd95dc8498cea5354377ed89aa65  xz-5.2.1.tar.xz
 28f1205d8dd2001f26fec1e8c2cebe37  zlib-1.2.8.tar.xz
 30537ef5a01e0ca94b7b8eb6a36bb1e4  lsb-release-1.4.tar.gz
-6182243466941aa7dc5249a50300fa4f  apt-1.1.0.zip
+9104ce061470a43addf30ab976181adc  apt_1.2.tar.xz
 62b490407489521db863b523a7f86375  unzip60.tar.gz
 c9a0a77f71fdc6b0f925bc3e79eb77f6  curl-7.45.0.tar.lzma
 38dd619b2e77cbac69b99f52a053d25a  openssl-1.0.2d.tar.gz
@@ -99,7 +99,7 @@ f97a65e6158775de518ac391935634c2  libxcb-1.11.1.tar.bz2
 1022293083eec9e62d5659261c29e367  xcb-util-keysyms-0.4.0.tar.bz2
 468b119c94da910e1291f3ffab91019a  xcb-util-renderutil-0.3.9.tar.bz2
 87b19a1cd7bfcb65a24e36c300e03129  xcb-util-wm-0.4.1.tar.bz2
-2b3369d64481c1f72ce2d88f7acdb0fb  mesa-11.0.2.tar.bz2
+2b3369d64481c1f72ce2d88f7acdb0fb  mesa-11.0.2.tar.xz
 543b2d28359ef33974fa0e772dd61732  libdrm-2.4.65.tar.bz2
 2e4536c1c48034f188a80789a59114d8  elfutils-0.164.tar.bz2
 b98b9495e5655a672dbcb83e1a180f8e  llvm-3.7.0.src.tar.xz
@@ -121,3 +121,7 @@ fa196a66e52c0c624fe5d350af7a5e7b  xf86-video-intel-2.99.917.tar.bz2
 4e928452dfaf73851413a2d8b8c76388  xinit-1.3.4.tar.bz2
 c685ef0b8e9f27b5e3db5db12b268ac6  Python-2.7.10.tar.xz
 5f07d5079327be83f450ecc459ffe249  python-2.7.10-docs-html.tar.bz2
+097ff1a324ae02e0a3b0369f07a7544a  which-2.21.tar.gz
+2d6ec8ccdf5c46b05ba54a9fd1d130d7  gtest-1.7.0.zip
+cd3034E0a44256a0917e254167217fc8  cmake-3.4.0.tar.gz
+efad5a503f66329bb9d2f4308b5de98a  libarchive-3.1.2.tar.gz

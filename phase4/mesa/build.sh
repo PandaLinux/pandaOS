@@ -27,7 +27,6 @@ function build() {
     	        --enable-texture-float       \
     	        --enable-gles1               \
     	        --enable-gles2               \
-    	        --enable-xa                  \
     	        --enable-glx-tls             \
     	        --enable-osmesa              \
     	        --with-egl-platforms="drm,x11,wayland" \

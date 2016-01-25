@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="dpkg"
-PKG_VERSION="1.17.25"
+PKG_NAME="cmake"
+PKG_VERSION="3.4.0"
 
-TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.xz"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -20,26 +20,21 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {
-	patch -p0 -i ../dpkg-gzip-rsyncable.patch
-    autoreconf -f -i
-    ./configure --prefix=/usr 				\
-    			--sysconfdir=/etc 			\
-    			--localstatedir=/var		\
-    			--sbindir=/usr/bin			\
-    			--disable-start-stop-daemon	\
-    			--with-zlib					\
-    			--with-liblzma				&&
-    make $MAKE_PARALLEL
+function build() {    
+    ./bootstrap --prefix=/usr       \
+	            --system-libs       \
+    	        --mandir=/share/man \
+    	        --no-system-jsoncpp \
+    	        --docdir=/share/doc/${PKG_NAME}-${PKG_VERSION} &&
+	make $MAKE_PARALLEL    	        
 }
 
 function check() {
-    echo " "
+	bin/ctest
 }
 
 function instal() {
     make $MAKE_PARALLEL install
-    touch /var/lib/${PKG_NAME}/{status,available}
 }
 
 function clean() {
