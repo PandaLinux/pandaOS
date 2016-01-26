@@ -104,7 +104,7 @@ EOF
 	# Add the sandbox user '_apt'
 	sudo useradd -r -M --system _apt
 
-	sudo wget -q http://panda-linux.esy.es/ftp/panda/conf/panda.gpg.key -O- | sudo apt-key add -
+	sudo wget -q http://panda-linux.esy.es/ftp/panda/panda.gpg.key -O- | sudo apt-key add -
 	sudo apt update
 }
 
