@@ -65,6 +65,8 @@ EOF
       mountFs       
     
       # Copy the data
+      echo "Please wait..."
+      echo " "
       cp -ur ./* "${MOUNT_POINT}"
       cp -ur "${PWD}"/.config "${MOUNT_POINT}"
       # Create /tools
