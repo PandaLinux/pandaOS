@@ -22,11 +22,14 @@ function unpack() {
 }
 
 function build() {
+	mkdir $BUILD_DIR
+	cd $BUILD_DIR
+
     LIBS=-L/tools/lib                    \
     CFLAGS=-I/tools/include              \
     PKG_CONFIG_PATH=/tools/lib/pkgconfig \
     ../configure --prefix=/usr           \
-             --bindir=/bin		 \
+             --bindir=/bin		 		 \
              --with-root-prefix=""   	 \
              --enable-elf-shlibs     	 \
              --disable-libblkid      	 \
