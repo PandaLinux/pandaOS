@@ -33,8 +33,7 @@ function build() {
     	        -nomake examples           \
     	        -no-rpath                  \
     	        -optimized-qmake           \
-    	        -v						   \
-    	        -skip qtwebengine          &&
+    	        -verbose				   &&
 	make $MAKE_PARALLEL
 }
 
