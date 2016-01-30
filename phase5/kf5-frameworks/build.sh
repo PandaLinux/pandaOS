@@ -77,7 +77,7 @@ ebb657138d4d1a8f73dd0f0656d24450  knotifyconfig-5.18.0.tar.xz
 62d98eec25d779bad419752793ff88e0  kfilemetadata-5.18.0.tar.xz
 90894895db301b7ab069d272a5b99bdc  baloo-5.18.0.tar.xz
 6663ffe69176c43ae4a4d6aab6f3dc67  breeze-icons-5.18.0.tar.xz
-#af3ffb2b0e1f978d13fbdf88da29bb89  oxygen-icons5-5.18.0.tar.xz
+af3ffb2b0e1f978d13fbdf88da29bb89  oxygen-icons5-5.18.0.tar.xz
 332bd1a8e3d131a5cd7774f3d1092bc3  portingAids/kjs-5.18.0.tar.xz
 ea647553f54e7d25e60cecaa8e3b30ad  portingAids/kdelibs4support-5.18.0.tar.xz
 6c5f6efdd6f69193cfce5c9c57cfeabb  portingAids/khtml-5.18.0.tar.xz

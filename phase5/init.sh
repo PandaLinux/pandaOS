@@ -5,7 +5,7 @@ shopt -s -o pipefail
 
 source "$MOUNT_POINT/common/functions.sh"
 
-_list=(kf5-setup dbus libevent sqlite pcre grep glib shared-mime-info desktop-file-utils qt libdbusmenu-qt phonon vlc phonon-backend-vlc nspr zip js polkit polkit-qt libgudev modem-manager dbus-glib libnl nss libndp network-manager libical bluez uri sgml-common docbook-xml docbook-xsl libxslt boost giflib libjpeg-turbo yasm lmdb kf5-frameworks) # kf5-plasma sddm)
+_list=(kf5-setup dbus libevent sqlite pcre grep glib shared-mime-info desktop-file-utils qt libdbusmenu-qt phonon vlc phonon-backend-vlc nspr zip js polkit polkit-qt libgudev modem-manager dbus-glib libnl nss libndp network-manager libical bluez uri sgml-common docbook-xml docbook-xsl libxslt boost giflib yasm libjpeg-turbo lmdb kf5-frameworks) # kf5-plasma sddm)
 
 for i in ${_list[@]}; do
     case $i in    
