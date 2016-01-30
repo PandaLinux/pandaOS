@@ -66,7 +66,7 @@ ebb657138d4d1a8f73dd0f0656d24450  knotifyconfig-5.18.0.tar.xz
 4d465788cbc34707a64bdebd9aa978bf  kparts-5.18.0.tar.xz
 984c74b7ef242703990caa8b2a0b187e  kactivities-5.18.0.tar.xz
 480a09bea54f2a052a883352a7902e08  kded-5.18.0.tar.xz
-1b4757582112bf05fdc85f4ad8bdeca9  kdewebkit-5.18.0.tar.xz
+#1b4757582112bf05fdc85f4ad8bdeca9  kdewebkit-5.18.0.tar.xz
 6c42319bacb47bc416fde04f57485a72  ktexteditor-5.18.0.tar.xz
 9e03c83e412caf74b42949393665b533  kdesignerplugin-5.18.0.tar.xz
 45573350b9f2257a80beaa81bb1b1115  plasma-framework-5.18.0.tar.xz
@@ -95,7 +95,6 @@ function check() {
 }
 
 function build() {
-set -e
 	while read -r line; do
 	    # Get the file name, ignoring comments and blank lines
     	if $(echo $line | grep -E -q '^ *$|^#' ); then continue; fi
