@@ -44,7 +44,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "${PKG_NAME}-doc-${PKG_VERSION}"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
