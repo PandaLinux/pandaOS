@@ -3,8 +3,8 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="xterm"
-PKG_VERSION="320"
+PKG_NAME="sgml-common"
+PKG_VERSION="0.6.3"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tgz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -21,12 +21,10 @@ function unpack() {
 }
 
 function build() {
-	sed -i '/v0/{n;s/new:/new:kb=^?:/}' termcap &&
-	printf '\tkbs=\\177,\n' >> terminfo &&
-
-	TERMINFO=/usr/share/terminfo \
-	./configure $XORG_CONFIG     \
-    			--with-app-defaults=/etc/X11/app-defaults &&
+	patch -Np1 -i ../sgml-common-0.6.3-manpage-1.patch &&
+	autoreconf -f -i
+	
+	./configure --prefix=/usr --sysconfdir=/etc &&
 	make $MAKE_PARALLEL
 }
 
@@ -35,16 +33,13 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install &&
-	make $MAKE_PARALLEL install-ti
-	
-	cat >> /etc/X11/app-defaults/XTerm << "EOF"
-*VT100*locale: true
-*VT100*faceName: Monospace
-*VT100*faceSize: 10
-*backarrowKeyIsErase: true
-*ptyInitialErase: true
-EOF
+	make $MAKE_PARALLEL docdir=/usr/share/doc install &&
+
+	install-catalog --add /etc/sgml/sgml-ent.cat \
+    					  /usr/share/sgml/sgml-iso-entities-8879.1986/catalog &&
+
+	install-catalog --add /etc/sgml/sgml-docbook.cat \
+						  /etc/sgml/sgml-ent.cat
 }
 
 function clean() {

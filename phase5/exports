@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export KF5_PREFIX=/opt/kf5
+export XDG_CONFIG_DIRS=$KF5_PREFIX/etc/xdg
+export XDG_DATA_DIRS=$KF5_PREFIX/share
+export QT5PREFIX=/opt/qt5
+
+export PATH=$PATH:/opt/qt5

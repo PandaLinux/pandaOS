@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="xclock"
-PKG_VERSION="1.0.7"
+PKG_NAME="vlc"
+PKG_VERSION="2.2.1"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -21,16 +21,25 @@ function unpack() {
 }
 
 function build() {
-	./configure $XORG_CONFIG &&
+	sed "s:< 56:< 57:g" -i configure &&
+	./configure --prefix=/usr		\
+				--disable-lua		\
+				--disable-mad		\
+				--disable-avcodec	\
+				--disable-swscale	\
+				--disable-a52		\
+				--disable-alsa		&&				
 	make $MAKE_PARALLEL
 }
 
 function check() {
-	echo " "
+	make $MAKE_PARALLEL check
 }
 
 function instal() {
-	make $MAKE_PARALLEL install
+	make $MAKE_PARALLEL docdir=/usr/share/doc/${PKG_NAME}-${PKG_VERSION} install
+	
+	update-desktop-database
 }
 
 function clean() {

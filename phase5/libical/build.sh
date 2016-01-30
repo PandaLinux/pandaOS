@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="xf86-video-ati"
-PKG_VERSION="7.5.0"
+PKG_NAME="libical"
+PKG_VERSION="1.0.1"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -21,24 +21,22 @@ function unpack() {
 }
 
 function build() {
-	./configure $XORG_CONFIG &&
+	mkdir build &&
+	cd build &&
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+    	  -DCMAKE_BUILD_TYPE=Release  \
+    	  -DSHARED_ONLY=yes           \
+    	  .. &&
 	make $MAKE_PARALLEL
 }
 
 function check() {
-	echo " "
+	make $MAKE_PARALLEL test
 }
 
 function instal() {
 	make $MAKE_PARALLEL install
-	
-	cat >> /etc/X11/xorg.conf.d/20-glamor.conf << "EOF"
-Section "Device"
-        Identifier "radeon"
-        Driver "radeon"
-        Option "AccelMethod" "glamor"
-EndSection
-EOF
 }
 
 function clean() {

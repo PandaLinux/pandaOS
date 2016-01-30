@@ -3,10 +3,10 @@
 set +h		# disable hashall
 shopt -s -o pipefail
 
-PKG_NAME="twm"
-PKG_VERSION="1.0.9"
+PKG_NAME="yasm"
+PKG_VERSION="1.3.0"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -21,17 +21,20 @@ function unpack() {
 }
 
 function build() {
-	sed -i -e '/^rcdir =/s,^\(rcdir = \).*,\1/etc/X11/app-defaults,' src/Makefile.in &&
-	./configure $XORG_CONFIG &&
+	sed -i 's#) ytasm.*#)#' Makefile.in &&
+
+	./configure --prefix=/usr &&
 	make $MAKE_PARALLEL
 }
 
 function check() {
-	echo " "
+	make $MAKE_PARALLEL check
 }
 
 function instal() {
 	make $MAKE_PARALLEL install
+	
+	update-desktop-database
 }
 
 function clean() {
