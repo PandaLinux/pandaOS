@@ -27,7 +27,7 @@ function build() {
     	        --with-all-insults         \
     	        --with-env-editor          \
     	        --docdir=/usr/share/doc/${PKG_NAME}-${PKG_VERSION} \
-    	        --with-passprompt="[sudo] password for %p" &&
+    	        --with-passprompt="[sudo] password for %p: " &&
     make $MAKE_PARALLEL
 }
 
