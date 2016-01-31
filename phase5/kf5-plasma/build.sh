@@ -57,8 +57,7 @@ EOF
 }
 
 function check() {
-	wget -r -c -nH --cut-dirs=3 -A '*.xz' -np http://download.kde.org/stable/plasma/5.5.3/
-	
+	wget -r -c -nH --cut-dirs=3 -A '*.xz' -np http://download.kde.org/stable/plasma/5.5.3/	
 	md5sum -c plasma-5.5.3.md5
 }
 
