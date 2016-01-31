@@ -77,12 +77,19 @@ session   required    pam_unix.so
 # End /etc/pam.d/system-session
 EOF
 
+	rm /etc/pam.d/system-password &&
 	cat > /etc/pam.d/system-password << "EOF"
 # Begin /etc/pam.d/system-password
 
-# use sha512 hash for encryption, use shadow, and try to use any previously
-# defined authentication token (chosen password) set by any prior module
-password  required    pam_unix.so       sha512 shadow try_first_pass
+# check new passwords for strength (man pam_cracklib)
+password  required    pam_cracklib.so   type=Linux retry=3 difok=5 \
+                                        difignore=23 minlen=9 dcredit=1 \
+                                        ucredit=1 lcredit=1 ocredit=1 \
+                                        dictpath=/lib/cracklib/pw_dict
+# use sha512 hash for encryption, use shadow, and use the
+# authentication token (chosen password) set by pam_cracklib
+# above (or any previous modules)
+password  required    pam_unix.so       sha512 shadow use_authtok
 
 # End /etc/pam.d/system-password
 EOF
@@ -105,6 +112,8 @@ EOF
 
 function clean() {
     rm -rf "${SRC_DIR}"
+    # Re-install shadow
+    rm -rf /phase3/shadow/DONE
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
