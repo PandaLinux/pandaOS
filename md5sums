@@ -185,3 +185,6 @@ ec810a0c60c08772a8a5552704b63393  libsndfile-1.0.26.tar.gz
 c52f463585d85924b28cdc1e373ae06d  cracklib-2.9.6.tar.gz
 cae1257e3a9f95c917cc9dbbab852316  cracklib-words-2.9.6.gz
 5d730cdb43aadee55145d0cf60430fa3  libinput-1.1.5.tar.xz
+657cc701316600199199a6b6cb2c73c9  qca-2.1.1.tar.xz
+b4cdeb2b9cb20dd6ac022a4f417eae0d  gstreamer-1.6.3.tar.xz
+3ddde0ad598ef69f58d6a2e87f8b460f  gst-plugins-base-1.6.3.tar.xz

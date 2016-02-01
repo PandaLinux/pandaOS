@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -e
 set +h		# disable hashall
 shopt -s -o pipefail
 
@@ -33,6 +32,7 @@ function build() {
     	        -nomake examples           \
     	        -no-rpath                  \
     	        -optimized-qmake           \
+    	        -skip qtwebengine		   \
     	        -verbose				   &&
 	make $MAKE_PARALLEL
 }
