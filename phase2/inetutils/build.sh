@@ -31,7 +31,12 @@ function build() {
 }
 
 function check() {
-    make $MAKE_PARALLEL check
+	# This comes packages comes with a test suite.
+	# But the tests are not run as it is not mandatory
+	#
+	# make $MAKE_PARALLEL check
+	#
+    echo " "
 }
 
 function instal() {
