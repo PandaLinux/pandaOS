@@ -34,7 +34,6 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    make $MAKE_PARALLEL -C doc install-html docdir=/usr/share/doc/tar-1.28
 }
 
 function clean() {

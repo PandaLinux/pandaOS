@@ -25,7 +25,6 @@ function build() {
     
     ./configure --prefix=/usr                       \
 		--bindir=/bin                       \
-		--docdir=/usr/share/doc/bash-4.3.30 \
 		--without-bash-malloc               \
 		--with-installed-readline
     make $MAKE_PARALLEL

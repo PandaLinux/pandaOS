@@ -51,7 +51,6 @@ EOF
 		--disable-ldconfig                                      \
 		--disable-sysusers                                      \
 		--without-python                                        \
-		--docdir=/usr/share/doc/systemd-224                     \
 		--with-dbuspolicydir=/etc/dbus-1/system.d               \
 		--with-dbussessionservicedir=/usr/share/dbus-1/services \
 		--with-dbussystemservicedir=/usr/share/dbus-1/system-services

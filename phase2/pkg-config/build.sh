@@ -24,8 +24,7 @@ function build() {
     ./configure		     \
 	--prefix=/usr        \
 	--with-internal-glib \
-	--disable-host-tool  \
-	--docdir=/usr/share/doc/pkg-config-0.28
+	--disable-host-tool
     
     make $MAKE_PARALLEL
 }

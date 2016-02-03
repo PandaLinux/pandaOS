@@ -22,15 +22,14 @@ function unpack() {
 }
 
 function build() {
-    mkdir "${BUILD_DIR}" &&
-    cd "${BUILD_DIR}" &&
-    ../configure               		\
-	    --prefix=/tools            	\
-	    --with-sysroot=$MOUNT_POINT \
-	    --with-lib-path=/tools/lib 	\
-	    --target=$TARGET       	\
-	    --disable-nls              	\
-	    --disable-werror
+    mkdir 	"${BUILD_DIR}" &&
+    cd 		"${BUILD_DIR}" &&
+    ../configure --prefix=/tools				\
+				 --with-sysroot=$MOUNT_POINT 	\
+				 --with-lib-path=/tools/lib 	\
+				 --target=$TARGET       		\
+				 --disable-nls              	\
+				 --disable-werror
     make $MAKE_PARALLEL
     
     case $(uname -m) in

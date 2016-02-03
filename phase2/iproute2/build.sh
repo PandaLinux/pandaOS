@@ -32,7 +32,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL DOCDIR=/usr/share/doc/iproute2-4.2.0 install
+    make $MAKE_PARALLEL install
 }
 
 function clean() {

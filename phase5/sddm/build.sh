@@ -21,6 +21,7 @@ function prepare() {
 
 function unpack() {
     tar xf ${TARBALL}
+    tar xf ${SYSTEMD_UNIT_TARBALL}
 }
 
 function build() {
@@ -54,13 +55,13 @@ function instal() {
 	make $MAKE_PARALLEL install &&
 	install -v -dm755 -o sddm -g sddm /var/lib/sddm
 	
-	sddm --example-config > sddm.example.conf
+	sddm --example-config > /etc/sddm.conf
 	sed -e 's/-nolisten tcp//'\
 	    -i /etc/sddm.conf
 	sed -e 's/\"none\"/\"off\"/' \
 	    -i /etc/sddm.conf
 	
-	cd ../../$SYSTEMD_UNIT
+	cd /phase5/sddm/$SYSTEMD_UNIT
 	make $MAKE_PARALLEL install-sddm
 	    
 	cat > /etc/pam.d/sddm << "EOF"
@@ -123,4 +124,4 @@ function clean() {
     rm -rf "${SRC_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean;

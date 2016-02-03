@@ -23,7 +23,6 @@ function unpack() {
 function build() {
     mkdir -pv /var/lib/hwclock
     ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-		--docdir=/usr/share/doc/util-linux-2.27 \
 		--disable-chfn-chsh  \
 		--disable-login      \
 		--disable-nologin    \

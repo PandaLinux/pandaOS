@@ -23,10 +23,8 @@ function unpack() {
 function build() {
       ./configure	 \
 	--prefix=/usr    \
-	--disable-static \
-	--docdir=/usr/share/doc/mpc-1.0.3
+	--disable-static
     make $MAKE_PARALLEL
-    make $MAKE_PARALLEL html
 }
 
 function check() {
@@ -35,7 +33,6 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    make $MAKE_PARALLEL install-html
 }
 
 function clean() {

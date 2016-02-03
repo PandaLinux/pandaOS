@@ -21,9 +21,8 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/usr --bindir=/bin --htmldir=/usr/share/doc/sed-4.2.2    
+    ./configure --prefix=/usr --bindir=/bin
     make $MAKE_PARALLEL
-    make $MAKE_PARALLEL html
 }
 
 function check() {
@@ -32,7 +31,6 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    make $MAKE_PARALLEL -C doc install-html
 }
 
 function clean() {

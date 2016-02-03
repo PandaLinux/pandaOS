@@ -22,8 +22,7 @@ function unpack() {
 
 function build() {    
     ./configure --prefix=/usr    \
-		--disable-static \
-		--docdir=/usr/share/doc/xz-5.2.1
+		--disable-static
     make $MAKE_PARALLEL
 }
 

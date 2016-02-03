@@ -25,7 +25,6 @@ function build() {
 	--prefix=/usr				 \
 	--exec-prefix=				 \
 	--libdir=/usr/lib			 \
-	--docdir=/usr/share/doc/procps-ng-3.3.11 \
 	--disable-static			 \
 	--disable-kill
     make $MAKE_PARALLEL

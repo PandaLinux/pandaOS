@@ -21,7 +21,7 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.0.4
+    ./configure --prefix=/usr
     make $MAKE_PARALLEL
 }
 

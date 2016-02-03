@@ -24,7 +24,6 @@ function build() {
     ./configure --prefix=/usr                       \
 		--sysconfdir=/etc                   \
 		--localstatedir=/var                \
-		--docdir=/usr/share/doc/dbus-1.8.20 \
 		--disable-static                    \
 		--with-console-auth-dir=/run/console
     

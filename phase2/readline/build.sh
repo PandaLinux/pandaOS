@@ -28,8 +28,7 @@ function build() {
     
     ./configure 	 \
 	--prefix=/usr 	 \
-	--disable-static \
-        --docdir=/usr/share/doc/readline-6.3
+	--disable-static
     make $MAKE_PARALLEL SHLIB_LIBS=-lncurses
 }
 

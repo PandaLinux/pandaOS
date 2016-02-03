@@ -22,7 +22,6 @@ function unpack() {
 
 function build() {
     ./configure --prefix=/usr                        \
-		--docdir=/usr/share/doc/man-db-2.7.2 \
 		--sysconfdir=/etc                    \
 		--disable-setuid                     \
 		--with-browser=/usr/bin/lynx         \
