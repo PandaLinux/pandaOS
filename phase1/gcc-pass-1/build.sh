@@ -23,25 +23,10 @@ SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 BUILD_DIR="${PKG_NAME}-build"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "../../source/$TARBALL" "$TARBALL"
-    fi
-    
-    if [[ ! -f "${TARBALL_MPFR}" ]]
-    then
-        ln -sv "../../source/$TARBALL_MPFR" "$TARBALL_MPFR"
-    fi
-    
-    if [[ ! -f "${TARBALL_MPC}" ]]
-    then
-        ln -sv "../../source/$TARBALL_MPC" "$TARBALL_MPC"
-    fi
-    
-    if [[ ! -f "${TARBALL_GMP}" ]]
-    then
-        ln -sv "../../source/$TARBALL_GMP" "$TARBALL_GMP"
-    fi
+	ln -sv "../../source/$TARBALL" "$TARBALL"
+	ln -sv "../../source/$TARBALL_MPFR" "$TARBALL_MPFR"
+	ln -sv "../../source/$TARBALL_MPC" "$TARBALL_MPC"
+	ln -sv "../../source/$TARBALL_GMP" "$TARBALL_GMP"
 }
 
 function unpack() {
@@ -104,7 +89,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}" "${BUILD_DIR}"
+    rm -rf "${SRC_DIR}" "${BUILD_DIR}" "$TARBALL" "$TARBALL_MPFR" "$TARBALL_MPC" "$TARBALL_GMP"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

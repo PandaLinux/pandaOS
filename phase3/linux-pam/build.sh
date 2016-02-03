@@ -10,10 +10,7 @@ TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -111,7 +108,7 @@ EOF
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL"
     # Re-install shadow
     rm -rf /phase3/shadow/DONE
 }

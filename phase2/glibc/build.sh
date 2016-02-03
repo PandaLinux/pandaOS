@@ -14,11 +14,8 @@ TARBALL_TZ="tzdata2015f.tar.gz"
 SRC_DIR_TZ="tzdata2015f"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-        ln -sv "/source/$TARBALL_TZ" "$TARBALL_TZ"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
+	ln -sv "/source/$TARBALL_TZ" "$TARBALL_TZ"
 }
 
 function unpack() {
@@ -106,7 +103,7 @@ EOF
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL" "$TARBALL_TZ"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

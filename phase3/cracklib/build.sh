@@ -11,11 +11,8 @@ SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 WORDS="${PKG_NAME}-words-${PKG_VERSION}.gz"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-        ln -sv "/source/$WORDS" "$WORDS"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
+	ln -sv "/source/$WORDS" "$WORDS"
 }
 
 function unpack() {
@@ -53,7 +50,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL" "$WORDS"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;instal;[[ $MAKE_CHECK = TRUE ]] && check;popd;clean
