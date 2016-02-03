@@ -6,15 +6,11 @@ shopt -s -o pipefail
 PKG_NAME="tcl"
 PKG_VERSION="8.6.4"
 
-DOCS_TARBALL="${PKG_NAME}${PKG_VERSION}-html.tar.gz"
 TARBALL="${PKG_NAME}${PKG_VERSION}-src.tar.gz"
 SRC_DIR="${PKG_NAME}${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -22,13 +18,10 @@ function unpack() {
 }
 
 function build() {
-	tar -xf ../${DOCS_TARBALL} --strip-components=1
-	
 	export SRCDIR=`pwd` &&
 	cd unix &&
 
 	./configure --prefix=/usr           \
-    	        --mandir=/usr/share/man \
     	        $([ $(uname -m) = x86_64 ] && echo --enable-64bit) &&
 	make $MAKE_PARALLEL &&
 
@@ -62,7 +55,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

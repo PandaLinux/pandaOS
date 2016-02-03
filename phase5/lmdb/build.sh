@@ -10,10 +10,7 @@ TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.gz"
 SRC_DIR="lmdb-${PKG_NAME}_${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -32,13 +29,12 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL prefix=/usr mandir=/usr/share/man install
-	
+	make $MAKE_PARALLEL prefix=/usr install
 	update-desktop-database
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

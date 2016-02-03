@@ -12,11 +12,8 @@ SYSTEMD_UNIT="blfs-bootscripts-20150924"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-        ln -sv "/source/$SYSTEMD_UNIT_TARBALL" "$SYSTEMD_UNIT_TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
+	ln -sv "/source/$SYSTEMD_UNIT_TARBALL" "$SYSTEMD_UNIT_TARBALL"
 }
 
 function unpack() {
@@ -121,7 +118,7 @@ EOF
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL" "$SYSTEMD_UNIT_TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean;

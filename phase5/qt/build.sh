@@ -10,10 +10,7 @@ TARBALL="${PKG_NAME}-everywhere-opensource-src-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-everywhere-opensource-src-${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -48,8 +45,6 @@ function instal() {
 		   -exec sed -i -e "s:$PWD/qtbase:/$QT5PREFIX/lib/:g" {} \; &&
 	find $QT5PREFIX -name \*.prl \
 		   -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \;
-	
-	QT5BINDIR=$QT5PREFIX/bin
 
 	install -v -dm755 /usr/share/pixmaps/                  &&
 	install -v -Dm644 qttools/src/assistant/assistant/images/assistant-128.png \
@@ -66,7 +61,7 @@ function instal() {
 [Desktop Entry]
 Name=Qt5 Assistant 
 Comment=Shows Qt5 documentation and examples
-Exec=$QT5BINDIR/assistant
+Exec=/opt/qt5/bin/assistant
 Icon=assistant-qt5.png
 Terminal=false
 Encoding=UTF-8
@@ -79,7 +74,7 @@ EOF
 Name=Qt5 Designer
 GenericName=Interface Designer
 Comment=Design GUIs for Qt5 applications
-Exec=$QT5BINDIR/designer
+Exec=/opt/qt5/bin/designer
 Icon=designer-qt5.png
 MimeType=application/x-designer;
 Terminal=false
@@ -92,7 +87,7 @@ EOF
 [Desktop Entry]
 Name=Qt5 Linguist
 Comment=Add translations to Qt5 applications
-Exec=$QT5BINDIR/linguist
+Exec=/opt/qt5/bin/linguist
 Icon=linguist-qt5.png
 MimeType=text/vnd.trolltech.linguist;application/x-linguist;
 Terminal=false
@@ -106,7 +101,7 @@ EOF
 Name=Qt5 QDbusViewer 
 GenericName=D-Bus Debugger
 Comment=Debug D-Bus applications
-Exec=$QT5BINDIR/qdbusviewer
+Exec=/opt/qt5/bin/qdbusviewer
 Icon=qdbusviewer-qt5.png
 Terminal=false
 Encoding=UTF-8

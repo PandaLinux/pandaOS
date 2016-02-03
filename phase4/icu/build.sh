@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e		# This package can not be installed via a chrooted env
 set +h		# disable hashall
 shopt -s -o pipefail
 
@@ -10,10 +11,7 @@ TARBALL="${PKG_NAME}${PKG_VERSION}-src.tgz"
 SRC_DIR="${PKG_NAME}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -34,7 +32,7 @@ function instal() {
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR}/source;build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

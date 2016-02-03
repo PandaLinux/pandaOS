@@ -10,10 +10,7 @@ TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi
+    ln -sv "/source/$TARBALL" "$TARBALL"
 }
 
 function unpack() {
@@ -21,9 +18,7 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr &&
-	makeinfo --html --no-split -o doc/dejagnu.html doc/dejagnu.texi &&
-	makeinfo --plaintext       -o doc/dejagnu.txt  doc/dejagnu.texi
+	./configure --prefix=/usr
 }
 
 function check() {
@@ -31,14 +26,11 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install &&
-	install -v -dm755   /usr/share/doc/${PKG_NAME}-${PKG_VERSION} &&
-	install -v -m644    doc/dejagnu.{html,txt} \
-    	                /usr/share/doc/${PKG_NAME}-${PKG_VERSION}
+	make $MAKE_PARALLEL install
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

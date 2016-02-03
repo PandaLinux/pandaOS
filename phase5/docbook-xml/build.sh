@@ -10,10 +10,8 @@ TARBALL="${PKG_NAME}-${PKG_VERSION}.zip"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
-    if [[ ! -f "${TARBALL}" ]]
-    then
-        ln -sv "/source/$TARBALL" "$TARBALL"
-    fi   
+	mkdir xml
+    ln -sv "/source/$TARBALL" "$TARBALL" 
 }
 
 function unpack() {	
@@ -129,7 +127,7 @@ done
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}"
+    rm -rf xml "$TARBALL"
 }
 
-clean;prepare;unpack;build;[[ $MAKE_CHECK = TRUE ]] && check;instal;clean
+clean;prepare;pushd xml;unpack;build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
