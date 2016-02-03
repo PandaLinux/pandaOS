@@ -84,9 +84,7 @@ ftp://ftp.x.org/pub/individual/lib/libXau-1.0.8.tar.bz2
 ftp://ftp.x.org/pub/individual/lib/libXdmcp-1.1.2.tar.bz2
 http://xcb.freedesktop.org/dist/xcb-proto-1.11.tar.bz2
 https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz
-https://docs.python.org/3/archives/python-3.5.0-docs-html.tar.bz2
 https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tar.xz
-https://docs.python.org/2.7/archives/python-2.7.10-docs-html.tar.bz2
 ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
 ftp://ftp.gnu.org/pub/gnu/dejagnu/dejagnu-1.5.3.tar.gz
 http://prdownloads.sourceforge.net/expect/expect5.45.tar.gz
@@ -132,7 +130,6 @@ http://www.libarchive.org/downloads/libarchive-3.1.2.tar.gz
 ftp://ftp.gnu.org/gnu/nano/nano-2.4.2.tar.gz
 http://download.qt.io/archive/qt/5.5/5.5.0/single/qt-everywhere-opensource-src-5.5.0.tar.gz
 https://www.sqlite.org/2015/sqlite-autoconf-3090200.tar.gz
-https://www.sqlite.org/2015/sqlite-doc-3090200.zip
 http://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20150924.tar.bz2
 http://downloads.sourceforge.net/levent/libevent-2.0.22-stable.tar.gz
 http://www.linuxfromscratch.org/~krejzi/libdbusmenu-qt-0.9.3+15.10.20150604.tar.xz

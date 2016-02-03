@@ -120,7 +120,6 @@ fa196a66e52c0c624fe5d350af7a5e7b  xf86-video-intel-2.99.917.tar.bz2
 0d7f0e6390d132ae59876b3870e5785d  xterm-320.tgz
 4e928452dfaf73851413a2d8b8c76388  xinit-1.3.4.tar.bz2
 c685ef0b8e9f27b5e3db5db12b268ac6  Python-2.7.10.tar.xz
-5f07d5079327be83f450ecc459ffe249  python-2.7.10-docs-html.tar.bz2
 097ff1a324ae02e0a3b0369f07a7544a  which-2.21.tar.gz
 2d6ec8ccdf5c46b05ba54a9fd1d130d7  gtest-1.7.0.zip
 cd3034E0a44256a0917e254167217fc8  cmake-3.4.0.tar.gz
@@ -128,7 +127,6 @@ efad5a503f66329bb9d2f4308b5de98a  libarchive-3.1.2.tar.gz
 ce6968992fec4283c17984b53554168b  nano-2.4.2.tar.gz
 9f6cb46e38b8955333dbc90ad456d40c  qt-everywhere-opensource-src-5.5.0.tar.gz
 bc4eb5b3fc5efcb6e059794306cac1ca  sqlite-autoconf-3090200.tar.gz
-edc091d50cb97880ebebd9d961e37c17  sqlite-doc-3090200.zip
 c4c56f986aa985677ca1db89630a2e11  libevent-2.0.22-stable.tar.gz
 d21a1f5569e0bc9c9245b4f71761c62f  libdbusmenu-qt-0.9.3+15.10.20150604.tar.xz
 88bb9867261803eed61ff53a7c026338  phonon-4.8.3.tar.xz
