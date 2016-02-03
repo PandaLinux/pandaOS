@@ -22,11 +22,11 @@ function unpack() {
 
 function build() {
     ./configure --prefix=/usr                        \
-		--sysconfdir=/etc                    \
-		--disable-setuid                     \
-		--with-browser=/usr/bin/lynx         \
-		--with-vgrind=/usr/bin/vgrind        \
-		--with-grap=/usr/bin/grap
+				--sysconfdir=/etc                    \
+				--disable-setuid                     \
+				--with-browser=/usr/bin/lynx         \
+				--with-vgrind=/usr/bin/vgrind        \
+				--with-grap=/usr/bin/grap
     
     make $MAKE_PARALLEL
 }

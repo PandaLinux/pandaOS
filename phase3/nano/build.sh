@@ -23,8 +23,7 @@ function unpack() {
 function build() {    
     ./configure --prefix=/usr     \
 	            --sysconfdir=/etc \
-    	        --enable-utf8     \
-    	        --docdir=/usr/share/doc/${PKG_NAME}-${PKG_VERSION} &&
+    	        --enable-utf8     &&
     make $MAKE_PARALLEL
 }
 
@@ -34,8 +33,7 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install &&
-	install -v -m644 doc/nanorc.sample /etc &&
-	install -v -m644 doc/texinfo/nano.html /usr/share/doc/${PKG_NAME}-${PKG_VERSION}
+	install -v -m644 doc/nanorc.sample /etc
 	
 	cat > /etc/nanorc << "EOF"
 ## Begin /etc/nanorc

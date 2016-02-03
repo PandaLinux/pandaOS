@@ -26,29 +26,35 @@ function build() {
     
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    ../configure  \
-        --prefix=/tools                    \
-        --host="$TARGET"                   \
-        --build=$(../scripts/config.guess) \
-        --disable-profile                  \
-        --enable-kernel=2.6.32             \
-        --enable-obsolete-rpc              \
-        --with-headers=/tools/include      \
-        libc_cv_forced_unwind=yes          \
-        libc_cv_ctors_header=yes           \
-        libc_cv_c_cleanup=yes
+    ../configure --prefix=/tools                    \
+		         --host="$TARGET"                   \
+				 --build=$(../scripts/config.guess) \
+				 --disable-profile                  \
+				 --enable-kernel=2.6.32             \
+				 --enable-obsolete-rpc              \
+				 --with-headers=/tools/include      \
+				 libc_cv_forced_unwind=yes          \
+				 libc_cv_ctors_header=yes           \
+				 libc_cv_c_cleanup=yes
     
-     make -j1
-     make -j1 install
+     make -j1     
+}
+
+function check() {
+	echo " "
+}
+
+function instal() {
+	make -j1 install
     
-     echo 'int main(){}' > dummy.c
-     "$TARGET-gcc" dummy.c
-     readelf -l a.out | grep ': /tools' |& tee test.log
-     rm -v dummy.c a.out
+	echo 'int main(){}' > dummy.c
+	"$TARGET-gcc" dummy.c
+	readelf -l a.out | grep ': /tools' |& tee test.log
+	rm -v dummy.c a.out
 }
 
 function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

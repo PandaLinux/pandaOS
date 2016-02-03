@@ -21,11 +21,9 @@ function unpack() {
 }
 
 function build() {
-    ./configure		     \
-	--prefix=/usr        \
-	--with-internal-glib \
-	--disable-host-tool
-    
+    ./configure	--prefix=/usr        \
+				--with-internal-glib \
+				--disable-host-tool 
     make $MAKE_PARALLEL
 }
 

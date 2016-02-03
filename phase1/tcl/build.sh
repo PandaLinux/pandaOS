@@ -23,9 +23,15 @@ function unpack() {
 function build() {
     cd unix &&
     ./configure --prefix=/tools
-    make $MAKE_PARALLEL
-    TZ=UTC make $MAKE_PARALLEL test
-    make $MAKE_PARALLEL install
+    make $MAKE_PARALLEL        
+}
+
+function check() {
+	TZ=UTC make $MAKE_PARALLEL test
+}
+
+function instal() {
+	make $MAKE_PARALLEL install
     chmod -v u+w /tools/lib/libtcl8.6.so
     make $MAKE_PARALLEL install-private-headers
     ln -sv tclsh8.6 /tools/bin/tclsh
@@ -35,4 +41,4 @@ function clean() {
     rm -rf "${SRC_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

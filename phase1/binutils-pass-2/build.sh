@@ -22,19 +22,25 @@ function unpack() {
 }
 
 function build() {
-    mkdir "${BUILD_DIR}" &&
-    cd "${BUILD_DIR}" &&
-    CC=$TARGET-gcc             \
-    AR=$TARGET-ar              \
-    RANLIB=$TARGET-ranlib      \
-    ../configure               \
-    --prefix=/tools            \
-    --disable-nls              \
-    --disable-werror           \
-    --with-lib-path=/tools/lib \
-    --with-sysroot
-    make $MAKE_PARALLEL
-    make $MAKE_PARALLEL install
+    mkdir 	"${BUILD_DIR}" &&
+    cd 		"${BUILD_DIR}" &&
+    CC=$TARGET-gcc             				\
+    AR=$TARGET-ar              				\
+    RANLIB=$TARGET-ranlib      				\
+    ../configure --prefix=/tools            \
+			     --disable-nls              \
+			     --disable-werror           \
+			     --with-lib-path=/tools/lib \
+			     --with-sysroot
+    make $MAKE_PARALLEL    
+}
+
+function check() {
+	echo " "
+}
+
+function instal(){
+	make $MAKE_PARALLEL install
     
     make $MAKE_PARALLEL -C ld clean
     make $MAKE_PARALLEL -C ld LIB_PATH=/usr/lib:/lib
@@ -45,4 +51,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean;
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

@@ -22,8 +22,7 @@ function unpack() {
 
 function build() {    
     echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
-    ./configure --prefix=/usr
-    
+    ./configure --prefix=/usr    
     make $MAKE_PARALLEL
 }
 

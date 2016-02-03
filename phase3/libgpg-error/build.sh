@@ -30,8 +30,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL install &&
-	install -v -m644 -D README /usr/share/doc/${PKG_NAME}-${PKG_VERSION}/README
+    make $MAKE_PARALLEL install
 	
 	mv -v /usr/lib/libgpg-error.so.* /lib
 	ln -sfv ../../../lib/$(readlink /usr/lib/libgpg-error.so) /usr/lib/libgpg-error.so

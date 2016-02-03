@@ -26,8 +26,16 @@ function build() {
     cp -rv dest/include/* /tools/include
 }
 
+function check() {
+	echo ""
+}
+
+function instal() {
+	echo ""
+}
+
 function clean() {
     rm -rf "${SRC_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

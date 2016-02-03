@@ -31,7 +31,7 @@ function build() {
 }
 
 function check() {
-    echo "Nothing to be done here."
+    echo " "
 }
 
 function instal() {

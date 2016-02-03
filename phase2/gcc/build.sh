@@ -25,12 +25,11 @@ function build() {
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
     SED=sed 			 \
-    ../configure		 \
-    	--prefix=/usr            \
-	--enable-languages=c,c++ \
-	--disable-multilib       \
-	--disable-bootstrap      \
-	--with-system-zlib
+    ../configure --prefix=/usr            \
+				 --enable-languages=c,c++ \
+				 --disable-multilib       \
+				 --disable-bootstrap      \
+				 --with-system-zlib
      make $MAKE_PARALLEL
 }
 

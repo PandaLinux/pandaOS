@@ -31,7 +31,7 @@ function check() {
 }
 
 function instal() {
-    echo "Nothing to install here."
+    echo " "
 }
 
 function clean() {

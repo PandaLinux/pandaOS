@@ -22,8 +22,8 @@ function unpack() {
 
 function build() {    
     ./configure --prefix=/usr 	 \
-		--disable-static \
-		--enable-libgdbm-compat
+				--disable-static \
+				--enable-libgdbm-compat
     make $MAKE_PARALLEL
 }
 

@@ -23,16 +23,22 @@ function unpack() {
 function build() {
     cp -v configure{,.orig}
     sed 's:/usr/local/bin:/bin:' configure.orig > configure
-    ./configure --prefix=/tools       \
-            --with-tcl=/tools/lib     \
-            --with-tclinclude=/tools/include
+    ./configure --prefix=/tools       		\
+	            --with-tcl=/tools/lib     	\
+    	        --with-tclinclude=/tools/include
     make $MAKE_PARALLEL
-    make $MAKE_PARALLEL test
-    make $MAKE_PARALLEL SCRIPTS="" install
+}
+
+function check(){
+	make $MAKE_PARALLEL test
+}
+
+function instal(){
+	make $MAKE_PARALLEL SCRIPTS="" install
 }
 
 function clean() {
     rm -rf "${SRC_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;instal;check;popd;clean

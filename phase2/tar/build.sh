@@ -23,7 +23,7 @@ function unpack() {
 function build() {
     FORCE_UNSAFE_CONFIGURE=1  \
     ./configure --prefix=/usr \
-		--bindir=/bin
+				--bindir=/bin
     
     make $MAKE_PARALLEL
 }

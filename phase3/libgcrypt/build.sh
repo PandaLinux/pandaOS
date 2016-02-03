@@ -30,10 +30,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL install &&
-	install -v -dm755   /usr/share/doc/${PKG_NAME}-${PKG_VERSION} &&
-	install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
-    	                /usr/share/doc/${PKG_NAME}-${PKG_VERSION}
+    make $MAKE_PARALLEL install
     	                
 	mv -v /usr/lib/libgcrypt.so.* /lib
 	ln -sfv ../../../lib/$(readlink /usr/lib/libgcrypt.so) /usr/lib/libgcrypt.so

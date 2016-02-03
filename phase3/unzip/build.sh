@@ -29,8 +29,7 @@ function check() {
 }
 
 function instal() {
-	make prefix=/usr MANDIR=/usr/share/man/man1 \
-		 -f unix/Makefile $MAKE_PARALLEL install
+	make prefix=/usr -f unix/Makefile $MAKE_PARALLEL install
 }
 
 function clean() {

@@ -24,10 +24,7 @@ function build() {
     patch -Np1 -i ../coreutils-8.24-i18n-1.patch 
     sed -i '/tests\/misc\/sort.pl/ d' Makefile.in
     
-    FORCE_UNSAFE_CONFIGURE=1 ./configure \
-            --prefix=/usr            	 \
-            --enable-no-install-program=kill,uptime
-            
+    FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --enable-no-install-program=kill,uptime            
     make $MAKE_PARALLEL
 }
 

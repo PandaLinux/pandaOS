@@ -35,9 +35,7 @@ function check() {
 
 function instal() {
 	sed -i 's# libcrypto.a##;s# libssl.a##' Makefile
-	make -j1 MANDIR=/usr/share/man MANSUFFIX=ssl install &&
-	install -v -dm755 /usr/share/doc/${PKG_NAME}-${PKG_VERSION}  &&
-	cp -rfv doc/*     /usr/share/doc/${PKG_NAME}-${PKG_VERSION}
+	make -j1 install
 }
 
 function clean() {

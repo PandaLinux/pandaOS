@@ -21,12 +21,11 @@ function unpack() {
 }
 
 function build() {
-    ./configure 				 \
-	--prefix=/usr				 \
-	--exec-prefix=				 \
-	--libdir=/usr/lib			 \
-	--disable-static			 \
-	--disable-kill
+    ./configure --prefix=/usr				 \
+				--exec-prefix=				 \
+				--libdir=/usr/lib			 \
+				--disable-static			 \
+				--disable-kill
     make $MAKE_PARALLEL
 }
 

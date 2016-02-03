@@ -40,7 +40,7 @@ EOF
     -e 's:test-copy$(EXEEXT) ::g' \
     -i Makefile.in
     
-    ./configure --prefix=/usr                                           \
+    ./configure --prefix=/usr                                   \
 		--sysconfdir=/etc                                       \
 		--localstatedir=/var                                    \
 		--config-cache                                          \

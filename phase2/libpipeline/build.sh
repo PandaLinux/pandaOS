@@ -21,8 +21,7 @@ function unpack() {
 }
 
 function build() {    
-    PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr
-    
+    PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr    
     make $MAKE_PARALLEL
 }
 

@@ -23,8 +23,7 @@ function unpack() {
 function build() {    
     sed -i 's#$(LOBJS): Makefile#$(LOBJS): pth_p.h Makefile#' Makefile.in &&
 	./configure --prefix=/usr           \
-    	        --disable-static        \
-    	        --mandir=/usr/share/man &&
+    	        --disable-static        &&
 	make $MAKE_PARALLEL
 }
 
@@ -33,11 +32,7 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install &&
-
-	install -v -m755 -d /usr/share/doc/${PKG_NAME}-${PKG_VERSION} &&
-	install -v -m644    README PORTING SUPPORT TESTS \
-    	                /usr/share/doc/${PKG_NAME}-${PKG_VERSION}
+	make $MAKE_PARALLEL install
 }
 
 function clean() {

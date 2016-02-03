@@ -45,7 +45,7 @@ function instal() {
 
 	gunzip -v                /usr/share/dict/cracklib-words.gz     		&&
 	ln -v -sf cracklib-words /usr/share/dict/words                 		&&
-	echo "panda-linux" >>      /usr/share/dict/cracklib-extra-words  	&&
+	echo "panda-linux" >>    /usr/share/dict/cracklib-extra-words  		&&
 	install -v -m755 -d      /lib/cracklib                         		&&
 
 	create-cracklib-dict     /usr/share/dict/cracklib-words \

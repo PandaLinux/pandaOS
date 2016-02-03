@@ -25,7 +25,7 @@ function build() {
 }
 
 function check() {
-    echo 'No tests are available'
+    echo " "
 }
 
 function instal() {

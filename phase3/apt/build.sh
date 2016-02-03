@@ -76,10 +76,7 @@ function instal() {
 	install bin/methods/* /usr/lib/apt/methods
 	install dselect/{install,setup,update} /usr/lib/dpkg/methods/apt
 	install -m 644 dselect/{desc.apt,names} /usr/lib/dpkg/methods/apt	
-	
-	# All example configs
-	install -m 644 doc/examples/* /usr/share/doc/apt/examples
-	
+		
 	# All locales
 	for lang in locale/*; do
 		mkdir -pv /usr/share/$lang/LC_MESSAGES

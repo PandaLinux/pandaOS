@@ -22,17 +22,16 @@ function unpack() {
 
 function build() {    
     ./configure --prefix=/usr          \
-		--bindir=/bin          \
-		--sysconfdir=/etc      \
-		--with-rootlibdir=/lib \
-		--with-xz              \
-		--with-zlib
-    
+				--bindir=/bin          \
+				--sysconfdir=/etc      \
+				--with-rootlibdir=/lib \
+				--with-xz              \
+				--with-zlib    
     make $MAKE_PARALLEL
 }
 
 function check() {
-    echo "Nothing to be done here."
+    echo " "
 }
 
 function instal() {

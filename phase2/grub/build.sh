@@ -22,16 +22,16 @@ function unpack() {
 
 function build() {    
     ./configure --prefix=/usr          \
-		--sbindir=/sbin        \
-		--sysconfdir=/etc      \
-		--disable-grub-emu-usb \
-		--disable-efiemu       \
-		--disable-werror
+				--sbindir=/sbin        \
+				--sysconfdir=/etc      \
+				--disable-grub-emu-usb \
+				--disable-efiemu       \
+				--disable-werror
     make $MAKE_PARALLEL
 }
 
 function check() {
-    echo "Nothing to be done here."
+    echo " "
 }
 
 function instal() {

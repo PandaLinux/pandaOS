@@ -28,14 +28,14 @@ function build() {
     LIBS=-L/tools/lib                    \
     CFLAGS=-I/tools/include              \
     PKG_CONFIG_PATH=/tools/lib/pkgconfig \
-    ../configure --prefix=/usr           \
-             --bindir=/bin		 		 \
-             --with-root-prefix=""   	 \
-             --enable-elf-shlibs     	 \
-             --disable-libblkid      	 \
-             --disable-libuuid       	 \
-             --disable-uuidd         	 \
-             --disable-fsck
+    ../configure --prefix=/usr           	\
+	             --bindir=/bin		 		\
+	             --with-root-prefix=""   	\
+	             --enable-elf-shlibs     	\
+	             --disable-libblkid      	\
+	             --disable-libuuid       	\
+	             --disable-uuidd         	\
+	             --disable-fsck
     make $MAKE_PARALLEL tooldir=/usr
 }
 

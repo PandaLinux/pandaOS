@@ -30,12 +30,10 @@ function build() {
     
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    ../configure  \
-	--prefix=/usr          \
-	--disable-profile      \
-	--enable-kernel=2.6.32 \
-	--enable-obsolete-rpc
-
+    ../configure --prefix=/usr          \
+				 --disable-profile      \
+				 --enable-kernel=2.6.32 \
+				 --enable-obsolete-rpc
     make $MAKE_PARALLEL
 }
 
@@ -96,7 +94,6 @@ EOF
     cat > /etc/ld.so.conf << "EOF"
 # Begin /etc/ld.so.conf
 /usr/local/lib
-/opt/lib
 
 EOF
 

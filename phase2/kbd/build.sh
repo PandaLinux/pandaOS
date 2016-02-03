@@ -26,7 +26,6 @@ function build() {
     sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
     
     PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr --disable-vlock
-    
     make $MAKE_PARALLEL
 }
 

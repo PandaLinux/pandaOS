@@ -22,16 +22,16 @@ function unpack() {
 
 function build() {    
     ./configure --prefix=/usr                       \
-		--sysconfdir=/etc                   \
-		--localstatedir=/var                \
-		--disable-static                    \
-		--with-console-auth-dir=/run/console
+				--sysconfdir=/etc                   \
+				--localstatedir=/var                \
+				--disable-static                    \
+				--with-console-auth-dir=/run/console
     
     make $MAKE_PARALLEL
 }
 
 function check() {
-    echo "Nothing to be done here."
+    echo " "
 }
 
 function instal() {

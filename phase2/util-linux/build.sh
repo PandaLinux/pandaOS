@@ -23,16 +23,15 @@ function unpack() {
 function build() {
     mkdir -pv /var/lib/hwclock
     ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-		--disable-chfn-chsh  \
-		--disable-login      \
-		--disable-nologin    \
-		--disable-su         \
-		--disable-setpriv    \
-		--disable-runuser    \
-		--disable-pylibmount \
-		--disable-static     \
-		--without-python
-    
+				--disable-chfn-chsh  \
+				--disable-login      \
+				--disable-nologin    \
+				--disable-su         \
+				--disable-setpriv    \
+				--disable-runuser    \
+				--disable-pylibmount \
+				--disable-static     \
+				--without-python  
     make $MAKE_PARALLEL
 }
 

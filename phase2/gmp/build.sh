@@ -21,13 +21,10 @@ function unpack() {
 }
 
 function build() {
-     ./configure	 \
-	--prefix=/usr    \
-	--enable-cxx	 \
-	--disable-static \
-	--docdir=/usr/share/doc/gmp-6.0.0a
+	./configure --prefix=/usr    \
+				--enable-cxx	 \
+				--disable-static
     make $MAKE_PARALLEL
-    make $MAKE_PARALLEL html
 }
 
 function check() {
@@ -37,7 +34,6 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
-    make $MAKE_PARALLEL install-html
 }
 
 function clean() {

@@ -21,11 +21,11 @@ function unpack() {
 }
 
 function build() {
-    echo "Nothing to build here"
+    echo " "
 }
 
 function check() {
-    echo "No tests are available"
+    echo " "
 }
 
 function instal() {

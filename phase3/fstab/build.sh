@@ -13,7 +13,7 @@ function build() {
 # End /etc/fstab
 EOF
 
-echo "$FILE_SYSTEM    /            ext4    defaults            1     1" >> /etc/fstab
+echo "$FILE_SYSTEM    		/            ext4    defaults            1     1" >> /etc/fstab
 }
 
 build;

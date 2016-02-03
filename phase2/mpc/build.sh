@@ -21,9 +21,8 @@ function unpack() {
 }
 
 function build() {
-      ./configure	 \
-	--prefix=/usr    \
-	--disable-static
+	./configure --prefix=/usr	\
+				--disable-static
     make $MAKE_PARALLEL
 }
 

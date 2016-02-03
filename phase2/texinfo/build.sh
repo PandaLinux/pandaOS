@@ -21,8 +21,7 @@ function unpack() {
 }
 
 function build() {    
-    ./configure --prefix=/usr
-    
+    ./configure --prefix=/usr    
     make $MAKE_PARALLEL
 }
 

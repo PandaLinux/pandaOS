@@ -23,9 +23,7 @@ function unpack() {
 function build() {    
     ./bootstrap --prefix=/usr       \
 	            --system-libs       \
-    	        --mandir=/share/man \
-    	        --no-system-jsoncpp \
-    	        --docdir=/share/doc/${PKG_NAME}-${PKG_VERSION} &&
+    	        --no-system-jsoncpp
 	make $MAKE_PARALLEL    	        
 }
 

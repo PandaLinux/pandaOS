@@ -24,9 +24,9 @@ function build() {
     patch -Np1 -i ../bash-4.3.30-upstream_fixes-2.patch
     
     ./configure --prefix=/usr                       \
-		--bindir=/bin                       \
-		--without-bash-malloc               \
-		--with-installed-readline
+				--bindir=/bin                       \
+				--without-bash-malloc               \
+				--with-installed-readline
     make $MAKE_PARALLEL
 }
 

@@ -72,28 +72,34 @@ function build() {
 
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    ../configure                                       \
-    	--target="$TARGET"                             \
-    	--prefix=/tools                                \
-    	--with-glibc-version=2.11                      \
-    	--with-sysroot="$MOUNT_POINT"                  \
-    	--with-newlib                                  \
-    	--without-headers                              \
-	--with-local-prefix=/tools                     \
-    	--with-native-system-header-dir=/tools/include \
-    	--disable-nls                                  \
-    	--disable-shared                               \
-    	--disable-multilib                             \
-    	--disable-decimal-float                        \
-    	--disable-threads                              \
-	--disable-libatomic                            \
-    	--disable-libgomp                              \
-    	--disable-libquadmath                          \
-    	--disable-libssp                               \
-    	--disable-libvtv                               \
-    	--disable-libstdcxx                            \
-    	--enable-languages=c,c++
+    ../configure --target="$TARGET"                             \
+				 --prefix=/tools                                \
+				 --with-glibc-version=2.11                      \
+				 --with-sysroot="$MOUNT_POINT"                  \
+				 --with-newlib                                  \
+				 --without-headers                              \
+				 --with-local-prefix=/tools                     \
+				 --with-native-system-header-dir=/tools/include \
+				 --disable-nls                                  \
+				 --disable-shared                               \
+				 --disable-multilib                             \
+				 --disable-decimal-float                        \
+				 --disable-threads                              \
+				 --disable-libatomic                            \
+				 --disable-libgomp                              \
+				 --disable-libquadmath                          \
+				 --disable-libssp                               \
+				 --disable-libvtv                               \
+				 --disable-libstdcxx                            \
+				 --enable-languages=c,c++
      make $MAKE_PARALLEL
+}
+
+function check() {
+	echo " "
+}
+
+function instal() {
      make $MAKE_PARALLEL install
 }
 
@@ -101,4 +107,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean

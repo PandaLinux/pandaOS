@@ -27,16 +27,15 @@ function build() {
     sed -i -e "/TABS-1;/a if (x > (TABS-1)) x = (TABS-1);" \
 	    libacl/__acl_to_any_text.c
     
-    ./configure		     	\
-	--prefix=/usr        	\
-	--disable-static	\
-	--libexecdir=/usr/lib
+    ./configure	--prefix=/usr       \
+				--disable-static	\
+				--libexecdir=/usr/lib
     
     make $MAKE_PARALLEL
 }
 
 function check() {
-    echo "Nothing to be done here."
+    echo " "
 }
 
 function instal() {

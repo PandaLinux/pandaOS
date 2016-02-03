@@ -22,7 +22,7 @@ function unpack() {
 
 function build() {        
     ./configure --prefix=/usr \
-		--localstatedir=/var/lib/locate
+				--localstatedir=/var/lib/locate
     make $MAKE_PARALLEL
 }
 

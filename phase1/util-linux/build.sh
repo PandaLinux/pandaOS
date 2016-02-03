@@ -21,16 +21,16 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/tools            \
-            --without-python               \
-            --disable-makeinstall-chown    \
-            --without-systemdsystemunitdir \
-            PKG_CONFIG=""
+    ./configure --prefix=/tools            		\
+	            --without-python               	\
+	            --disable-makeinstall-chown    	\
+	            --without-systemdsystemunitdir 	\
+	            PKG_CONFIG=""
     make $MAKE_PARALLEL
 }
 
 function check() {
-    echo 'No tests are available.'
+    echo " "
 }
 
 function instal() {

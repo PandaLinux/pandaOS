@@ -24,9 +24,8 @@ function build() {
     sed -i -e 's|/@pkg_name@|&-@pkg_version@|' include/builddefs.in
     sed -i -e "/SUBDIRS/s|man2||" man/Makefile
     
-    ./configure		     	\
-	--prefix=/usr        	\
-	--disable-static
+    ./configure	--prefix=/usr        	\
+				--disable-static
     
     make $MAKE_PARALLEL
 }

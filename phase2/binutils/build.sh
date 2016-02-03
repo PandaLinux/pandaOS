@@ -27,10 +27,9 @@ function build() {
 
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    ../configure 	\
-	--prefix=/usr   \
-	--enable-shared \
-	--disable-werror
+    ../configure --prefix=/usr   \
+				 --enable-shared \
+				 --disable-werror
     make $MAKE_PARALLEL tooldir=/usr
 }
 

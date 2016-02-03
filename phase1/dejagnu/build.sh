@@ -21,13 +21,19 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/tools
-    make $MAKE_PARALLEL install
-    make $MAKE_PARALLEL check
+    ./configure --prefix=/tools    
+}
+
+function check(){
+	make $MAKE_PARALLEL check
+}
+
+function instal(){
+	make $MAKE_PARALLEL install
 }
 
 function clean() {
     rm -rf "${SRC_DIR}"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;instal;check;popd;clean

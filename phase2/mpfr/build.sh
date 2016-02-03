@@ -22,9 +22,8 @@ function unpack() {
 
 function build() {
     patch -Np1 -i ../mpfr-3.1.3-upstream_fixes-1.patch
-      ./configure	 \
-	--prefix=/usr    \
-	--enable-thread-safe
+	./configure	--prefix=/usr    \
+				--enable-thread-safe
     make $MAKE_PARALLEL
 }
 
