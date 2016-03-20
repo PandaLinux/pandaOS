@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="util-linux"
-PKG_VERSION="2.27"
+PKG_VERSION="2.27.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,11 +19,11 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/tools            		\
-	            --without-python               	\
-	            --disable-makeinstall-chown    	\
-	            --without-systemdsystemunitdir 	\
-	            PKG_CONFIG=""
+    ./configure --prefix=/tools            	\
+	        --without-python               	\
+	        --disable-makeinstall-chown    	\
+	        --without-systemdsystemunitdir 	\
+                PKG_CONFIG=""
     make $MAKE_PARALLEL
 }
 
