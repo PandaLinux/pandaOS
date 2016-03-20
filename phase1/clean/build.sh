@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 function clean() {
     strip --strip-debug /tools/lib/*
@@ -13,4 +14,4 @@ function prepare() {
     sudo chown -R root:root $MOUNT_POINT/tools
 }
 
-clean;prepare;
+clean;prepare;touch DONE;

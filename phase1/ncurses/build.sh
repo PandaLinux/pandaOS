@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="ncurses"
 PKG_VERSION="6.0"
@@ -20,7 +21,7 @@ function unpack() {
 function build() {
     sed -i s/mawk// configure
     ./configure --prefix=/tools \
-	            --with-shared   \
+                --with-shared   \
     	        --without-debug \
     	        --without-ada   \
     	        --enable-widec  \
