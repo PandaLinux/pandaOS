@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="glibc"
-PKG_VERSION="2.22"
+PKG_VERSION="2.23"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -19,22 +19,19 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../glibc-2.22-upstream_i386_fix-1.patch
-    
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
     ../configure --prefix=/tools                    \
-		         --host="$TARGET"                   \
-				 --build=$(../scripts/config.guess) \
-				 --disable-profile                  \
-				 --enable-kernel=2.6.32             \
-				 --enable-obsolete-rpc              \
-				 --with-headers=/tools/include      \
-				 libc_cv_forced_unwind=yes          \
-				 libc_cv_ctors_header=yes           \
-				 libc_cv_c_cleanup=yes
-    
-     make -j1     
+		 --host="$TARGET"                   \
+		 --build=$(../scripts/config.guess) \
+		 --disable-profile                  \
+		 --enable-kernel=2.6.32             \
+		 --enable-obsolete-rpc              \
+		 --with-headers=/tools/include      \
+		 libc_cv_forced_unwind=yes          \
+		 libc_cv_ctors_header=yes           \
+		 libc_cv_c_cleanup=yes
+     make -j1  
 }
 
 function check() {
