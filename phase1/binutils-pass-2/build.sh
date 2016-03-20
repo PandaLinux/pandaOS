@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="binutils"
-PKG_VERSION="2.25.1"
+PKG_VERSION="2.26"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -21,14 +22,14 @@ function unpack() {
 function build() {
     mkdir 	"${BUILD_DIR}" &&
     cd 		"${BUILD_DIR}" &&
-    CC=$TARGET-gcc             				\
-    AR=$TARGET-ar              				\
-    RANLIB=$TARGET-ranlib      				\
+    CC=$TARGET-gcc             		    \
+    AR=$TARGET-ar              	            \
+    RANLIB=$TARGET-ranlib      		    \
     ../configure --prefix=/tools            \
-			     --disable-nls              \
-			     --disable-werror           \
-			     --with-lib-path=/tools/lib \
-			     --with-sysroot
+		 --disable-nls              \
+		 --disable-werror           \
+		 --with-lib-path=/tools/lib \
+		 --with-sysroot
     make $MAKE_PARALLEL    
 }
 
