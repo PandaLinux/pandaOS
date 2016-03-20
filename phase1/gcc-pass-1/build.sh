@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="gcc"
-PKG_VERSION="5.2.0"
+PKG_VERSION="5.3.0"
 
 PKG_MPFR="mpfr"
 PKG_MPFR_VERSION="3.1.3"
@@ -15,7 +16,7 @@ PKG_MPC_VERSION="1.0.3"
 TARBALL_MPC="${PKG_MPC}-${PKG_MPC_VERSION}.tar.gz"
 
 PKG_GMP="gmp"
-PKG_GMP_VERSION="6.0.0a"
+PKG_GMP_VERSION="6.1.0"
 TARBALL_GMP="${PKG_GMP}-${PKG_GMP_VERSION}.tar.xz"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
@@ -36,7 +37,7 @@ function unpack() {
     tar -xf ${TARBALL_MPC}
     mv -v "${PKG_MPC}-${PKG_MPC_VERSION}" "${SRC_DIR}/${PKG_MPC}"
     tar -xf ${TARBALL_GMP}
-    mv -v "${PKG_GMP}-6.0.0" "${SRC_DIR}/${PKG_GMP}"
+    mv -v "${PKG_GMP}-${PKG_GMP_VERSION}" "${SRC_DIR}/${PKG_GMP}"
 }
 
 function build() {
@@ -58,25 +59,25 @@ function build() {
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
     ../configure --target="$TARGET"                             \
-				 --prefix=/tools                                \
-				 --with-glibc-version=2.11                      \
-				 --with-sysroot="$MOUNT_POINT"                  \
-				 --with-newlib                                  \
-				 --without-headers                              \
-				 --with-local-prefix=/tools                     \
-				 --with-native-system-header-dir=/tools/include \
-				 --disable-nls                                  \
-				 --disable-shared                               \
-				 --disable-multilib                             \
-				 --disable-decimal-float                        \
-				 --disable-threads                              \
-				 --disable-libatomic                            \
-				 --disable-libgomp                              \
-				 --disable-libquadmath                          \
-				 --disable-libssp                               \
-				 --disable-libvtv                               \
-				 --disable-libstdcxx                            \
-				 --enable-languages=c,c++
+		 --prefix=/tools                                \
+		 --with-glibc-version=2.11                      \
+		 --with-sysroot="$MOUNT_POINT"                  \
+		 --with-newlib                                  \
+		 --without-headers                              \
+		 --with-local-prefix=/tools                     \
+		 --with-native-system-header-dir=/tools/include \
+		 --disable-nls                                  \
+		 --disable-shared                               \
+		 --disable-multilib                             \
+		 --disable-decimal-float                        \
+		 --disable-threads                              \
+		 --disable-libatomic                            \
+		 --disable-libgomp                              \
+		 --disable-libquadmath                          \
+		 --disable-libssp                               \
+		 --disable-libvtv                               \
+		 --disable-libstdcxx                            \
+		 --enable-languages=c,c++
      make $MAKE_PARALLEL
 }
 
