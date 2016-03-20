@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="perl"
-PKG_VERSION="5.22.0"
+PKG_VERSION="5.22.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -27,9 +28,9 @@ function check() {
 }
 
 function instal() {
-    cp -v perl cpan/podlators/pod2man /tools/bin
-    mkdir -pv /tools/lib/perl5/5.22.0
-    cp -Rv lib/* /tools/lib/perl5/5.22.0
+    sudo cp -v perl cpan/podlators/pod2man /tools/bin
+    sudo mkdir -pv /tools/lib/perl5/$PKG_VERSION
+    sudo cp -Rv lib/* /tools/lib/perl5/$PKG_VERSION
 }
 
 function clean() {
