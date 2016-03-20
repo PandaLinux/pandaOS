@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="gcc"
-PKG_VERSION="5.2.0"
+PKG_VERSION="5.3.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -22,13 +23,13 @@ function build() {
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
     ../libstdc++-v3/configure --target="$TARGET"              \
-							  --prefix=/tools                 \
-							  --disable-multilib              \
-							  --disable-nls                   \
-							  --disable-libstdcxx-threads     \
-							  --disable-libstdcxx-pch         \
-							  --with-gxx-include-dir=/tools/$TARGET/include/c++/5.2.0
-	make $MAKE_PARALLEL	
+			      --prefix=/tools                 \
+			      --disable-multilib              \
+			      --disable-nls                   \
+			      --disable-libstdcxx-threads     \
+			      --disable-libstdcxx-pch         \
+			      --with-gxx-include-dir=/tools/$TARGET/include/c++/$PKG_VERSION
+	make $MAKE_PARALLEL
 }
 
 function check() {
