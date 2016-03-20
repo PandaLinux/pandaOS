@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="tcl"
 PKG_VERSION="8.6.4"
@@ -28,7 +29,7 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install
+    make $MAKE_PARALLEL install
     chmod -v u+w /tools/lib/libtcl8.6.so
     make $MAKE_PARALLEL install-private-headers
     ln -sv tclsh8.6 /tools/bin/tclsh
