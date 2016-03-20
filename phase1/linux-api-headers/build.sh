@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="linux"
-PKG_VERSION="4.2"
+PKG_VERSION="4.4.2"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
