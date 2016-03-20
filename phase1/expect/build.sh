@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="expect"
 PKG_VERSION="5.45"
@@ -21,7 +22,7 @@ function build() {
     cp -v configure{,.orig}
     sed 's:/usr/local/bin:/bin:' configure.orig > configure
     ./configure --prefix=/tools       		\
-	            --with-tcl=/tools/lib     	\
+                --with-tcl=/tools/lib     	\
     	        --with-tclinclude=/tools/include
     make $MAKE_PARALLEL
 }
@@ -38,4 +39,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;instal;check;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;check;instal;popd;clean
