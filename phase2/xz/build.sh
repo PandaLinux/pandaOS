@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e		# Exit upon error
 
 PKG_NAME="xz"
-PKG_VERSION="5.2.1"
+PKG_VERSION="5.2.2"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -17,7 +18,10 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {    
+function build() {
+    sed -e '/mf\.buffer = NULL/a next->coder->mf.size = 0;' \
+        -i src/liblzma/lz/lz_encoder.c
+
     ./configure --prefix=/usr    \
 				--disable-static
     make $MAKE_PARALLEL
@@ -32,7 +36,7 @@ function instal() {
     
     mv -v /usr/bin/{lzma,unlzma,lzcat,xz,unxz,xzcat} /bin
     mv -v /usr/lib/liblzma.so.* /lib
-    ln -svf ../../../lib/$(readlink /usr/lib/liblzma.so) /usr/lib/liblzma.so
+    ln -svf ../../lib/$(readlink /usr/lib/liblzma.so) /usr/lib/liblzma.so
 }
 
 function clean() {
