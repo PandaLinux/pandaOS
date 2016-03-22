@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="grep"
-PKG_VERSION="2.21"
+PKG_VERSION="2.23"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,7 +19,6 @@ function unpack() {
 }
 
 function build() {
-    sed -i -e '/tp++/a  if (ep <= tp) break;' src/kwset.c
     ./configure --prefix=/usr --bindir=/bin
     make $MAKE_PARALLEL
 }
