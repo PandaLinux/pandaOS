@@ -38,7 +38,7 @@ function check() {
 }
 
 function instal(){
-	make $MAKE_PARALLEL install
+    make $MAKE_PARALLEL install
     
     make $MAKE_PARALLEL -C ld clean
     make $MAKE_PARALLEL -C ld LIB_PATH=/usr/lib:/lib

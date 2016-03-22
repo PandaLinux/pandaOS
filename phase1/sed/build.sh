@@ -19,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/tools
+	./configure --prefix=/tools
     make $MAKE_PARALLEL
 }
 
@@ -36,3 +36,4 @@ function clean() {
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+

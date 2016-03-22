@@ -15,7 +15,7 @@ for i in ${_list[@]}; do
                     if [ -e DONE ]; then
                         echo "tcl --> Already Built"
                     else
-                        echo "Building---> tcl"
+                        echo "Building ---> tcl"
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> tcl completed"
                         touch DONE
@@ -30,7 +30,7 @@ for i in ${_list[@]}; do
                     if [ -e DONE ]; then
                         echo "expect --> Already Built"
                     else
-                        echo "Building---> expect"
+                        echo "Building ---> expect"
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> expect completed"
                         touch DONE
@@ -45,20 +45,35 @@ for i in ${_list[@]}; do
                     if [ -e DONE ]; then
                         echo "dejagnu --> Already Built"
                     else
-                        echo "Building---> dejagnu"
+                        echo "Building ---> dejagnu"
                         ( ./build.sh |& tee build.log ) || false
                         echo "Build ---> dejagnu completed"
                         touch DONE
                     fi
                 popd
-            fi ;;          
+            fi ;;
+
+	check ) 
+            if [ $MAKE_CHECK = TRUE ]
+            then
+                pushd check
+                    if [ -e DONE ]; then
+                        echo "check --> Already Built"
+                    else
+                        echo "Building ---> check"
+                        ( ./build.sh |& tee build.log ) || false
+                        echo "Build ---> check completed"
+                        touch DONE
+                    fi
+                popd
+            fi ;;
         
         * ) 
             pushd ${i} || (echo "${i} --> Not found in list error -->$?";exit 1)
                 if [ -e DONE ]; then
                     echo "${i} --> Already Built"
                 else
-                    echo "Building---> ${i}"
+                    echo "Building ---> ${i}"
                     ( ./build.sh |& tee build.log ) || false
                     echo "Build ---> ${i} completed"
                     touch DONE

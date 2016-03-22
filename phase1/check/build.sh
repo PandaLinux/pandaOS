@@ -35,4 +35,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;check;instal;popd;clean

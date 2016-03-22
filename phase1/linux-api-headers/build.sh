@@ -20,16 +20,15 @@ function unpack() {
 
 function build() {
     make $MAKE_PARALLEL mrproper
-    make $MAKE_PARALLEL INSTALL_HDR_PATH=dest headers_install
-    cp -rv dest/include/* /tools/include
 }
 
 function check() {
-	echo ""
+    echo ""
 }
 
 function instal() {
-	echo ""
+    make $MAKE_PARALLEL INSTALL_HDR_PATH=dest headers_install
+    cp -rv dest/include/* /tools/include
 }
 
 function clean() {

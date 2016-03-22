@@ -25,7 +25,7 @@ function build() {
 }
 
 function check() {
-	TZ=UTC make $MAKE_PARALLEL test
+    TZ=UTC make $MAKE_PARALLEL test
 }
 
 function instal() {

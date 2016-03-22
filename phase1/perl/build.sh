@@ -28,9 +28,9 @@ function check() {
 }
 
 function instal() {
-    sudo cp -v perl cpan/podlators/pod2man /tools/bin
-    sudo mkdir -pv /tools/lib/perl5/$PKG_VERSION
-    sudo cp -Rv lib/* /tools/lib/perl5/$PKG_VERSION
+    cp -v perl cpan/podlators/pod2man /tools/bin
+    mkdir -pv /tools/lib/perl5/$PKG_VERSION
+    cp -Rv lib/* /tools/lib/perl5/$PKG_VERSION
 }
 
 function clean() {
