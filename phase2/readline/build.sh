@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="readline"
 PKG_VERSION="6.3"
@@ -18,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../readline-6.3-upstream_fixes-3.patch
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-upstream_fixes-3.patch
     
     sed -i '/MV.*old/d' Makefile.in
     sed -i '/{OLDSUFF}/c:' support/shlib-install

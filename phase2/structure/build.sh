@@ -2,10 +2,11 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 function build() {
     mkdir -pv /{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
-    mkdir -pv /{media/{floppy,cdrom},sbin,srv,var}
+    mkdir -pv /{media/cdrom,sbin,srv,var}
     install -dv -m 0750 /root
     install -dv -m 1777 /tmp /var/tmp
     mkdir -pv /usr/{,local/}{bin,include,lib,sbin,src}
@@ -47,6 +48,7 @@ systemd-journal-upload:x:75:75:systemd Journal Upload:/:/bin/false
 systemd-network:x:76:76:systemd Network Management:/:/bin/false
 systemd-resolve:x:77:77:systemd Resolver:/:/bin/false
 systemd-timesync:x:78:78:systemd Time Synchronization:/:/bin/false
+systemd-coredump:x:79:79:systemd Core Dumper:/:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
 EOF
 
@@ -79,6 +81,7 @@ systemd-journal-upload:x:75:
 systemd-network:x:76:
 systemd-resolve:x:77:
 systemd-timesync:x:78:
+systemd-coredump:x:79:
 nogroup:x:99:
 users:x:999:
 EOF
