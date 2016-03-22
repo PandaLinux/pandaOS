@@ -1,11 +1,10 @@
 #!/bin/sh
 
 set +h		# disable hashall
-set -e		# exit upon error
 shopt -s -o pipefail
 
 PKG_NAME="binutils"
-PKG_VERSION="2.25.1"
+PKG_VERSION="2.26"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -20,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-    expect -c "spawn ls"
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-upstream_fix-2.patch
 
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
