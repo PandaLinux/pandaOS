@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="kmod"
-PKG_VERSION="21"
+PKG_VERSION="22"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -35,7 +36,7 @@ function instal() {
     make $MAKE_PARALLEL install
     
     for target in depmod insmod lsmod modinfo modprobe rmmod; do
-	ln -sv ../../../bin/kmod /sbin/$target
+		ln -sv ../bin/kmod /sbin/$target
     done
 
     ln -sv kmod /bin/lsmod
