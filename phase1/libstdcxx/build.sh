@@ -22,7 +22,7 @@ function unpack() {
 function build() {
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    ../libstdc++-v3/configure --target="$TARGET"              \
+    ../libstdc++-v3/configure --host="$TARGET"                \
 			      --prefix=/tools                 \
 			      --disable-multilib              \
 			      --disable-nls                   \
