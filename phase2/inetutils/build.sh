@@ -31,16 +31,13 @@ function build() {
 }
 
 function check() {
-	# This comes packages comes with a test suite.
-	# But the tests are not run as it is not mandatory
-	#
-	# make $MAKE_PARALLEL check
-	#
-    echo " "
+   make $MAKE_PARALLEL check
 }
 
 function instal() {
     make $MAKE_PARALLEL install
+    mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin
+    mv -v /usr/bin/ifconfig /sbin
 }
 
 function clean() {
