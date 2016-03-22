@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="coreutils"
-PKG_VERSION="8.24"
+PKG_VERSION="8.25"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,11 +19,10 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../coreutils-8.24-i18n-1.patch 
-    sed -i '/tests\/misc\/sort.pl/ d' Makefile.in
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-i18n-2.patch 
     
     FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --enable-no-install-program=kill,uptime            
-    make $MAKE_PARALLEL
+    FORCE_UNSAFE_CONFIGURE=1 make $MAKE_PARALLEL
 }
 
 function check() {
@@ -30,7 +30,7 @@ function check() {
     echo "dummy:x:1000:nobody" >> /etc/group
     chown -Rv nobody .
     su nobody -s /bin/bash \
-	      -c "PATH=$PATH make $MAKE_PARALLEL RUN_EXPENSIVE_TESTS=yes check"
+			  -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check"
     sed -i '/dummy/d' /etc/group
 }
 
