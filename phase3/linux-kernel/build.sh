@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="linux"
-PKG_VERSION="4.2"
+PKG_VERSION="4.4.2"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -31,9 +31,7 @@ function instal() {
     make $MAKE_PARALLEL modules_install
     cp -v arch/x86/boot/bzImage /boot/$VM_LINUZ
     cp -v System.map /boot/$SYSTEM_MAP
-    cp -v .config /boot/$CONFIG_BACKUP
-    install -d /usr/share/doc/linux-4.2
-    cp -r Documentation/* /usr/share/doc/linux-4.2
+    cp -v .config /boot/$CONFIG_BACKUP    
     
     install -v -m755 -d /etc/modprobe.d
     cat > /etc/modprobe.d/usb.conf << "EOF"
