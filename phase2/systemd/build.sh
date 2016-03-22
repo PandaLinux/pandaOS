@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="systemd"
-PKG_VERSION="224"
+PKG_VERSION="229"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,6 +19,13 @@ function unpack() {
 }
 
 function build() {
+    sed -i "s:blkid/::" $(grep -rl "blkid/blkid.h")
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-compat-1.patch    
+    sed -e 's:test/udev-test.pl ::g'  \
+        -e 's:test-copy$(EXEEXT) ::g' \
+        -i Makefile.in
+    autoreconf -fi
+
     cat > config.cache << "EOF"
 KILL=/bin/kill
 MOUNT_PATH=/bin/mount
@@ -29,28 +37,20 @@ HAVE_LIBMOUNT=1
 MOUNT_LIBS="-lmount"
 MOUNT_CFLAGS="-I/tools/include/libmount"
 cc_cv_CFLAGS__flto=no
+XSLTPROC="/usr/bin/xsltproc"
 EOF
-
-    sed -i "s:blkid/::" $(grep -rl "blkid/blkid.h")
-    patch -Np1 -i ../systemd-224-compat-3.patch    
-    sed -e 's:test/udev-test.pl ::g'  \
-    -e 's:test-copy$(EXEEXT) ::g' \
-    -i Makefile.in
     
-    ./configure --prefix=/usr                                   \
-		--sysconfdir=/etc                                       \
-		--localstatedir=/var                                    \
-		--config-cache                                          \
-		--with-rootprefix=                                      \
-		--with-rootlibdir=/lib                                  \
-		--enable-split-usr                                      \
-		--disable-firstboot                                     \
-		--disable-ldconfig                                      \
-		--disable-sysusers                                      \
-		--without-python                                        \
-		--with-dbuspolicydir=/etc/dbus-1/system.d               \
-		--with-dbussessionservicedir=/usr/share/dbus-1/services \
-		--with-dbussystemservicedir=/usr/share/dbus-1/system-services
+    ./configure --prefix=/usr			\
+				--sysconfdir=/etc		\
+				--localstatedir=/var	\
+				--config-cache			\
+				--with-rootprefix=		\
+				--with-rootlibdir=/lib	\
+				--enable-split-usr		\
+				--disable-firstboot		\
+				--disable-ldconfig		\
+				--disable-sysusers		\
+				--without-python
     make $MAKE_PARALLEL LIBRARY_PATH=/tools/lib
 }
 
@@ -66,11 +66,10 @@ function instal() {
     rm -rfv /usr/lib/rpm
     
     for tool in runlevel reboot shutdown poweroff halt telinit; do
-	ln -sfv ../../../bin/systemctl /sbin/${tool}
+		ln -sfv ../bin/systemctl /sbin/${tool}
     done
-    ln -sfv ../../../lib/systemd/systemd /sbin/init
-    
-    sed -i "s:0775 root lock:0755 root root:g" /usr/lib/tmpfiles.d/legacy.conf
+    ln -sfv ../lib/systemd/systemd /sbin/init
+        
     systemd-machine-id-setup    
 }
 

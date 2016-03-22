@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="acl"
 PKG_VERSION="2.2.52"
@@ -25,7 +26,7 @@ function build() {
 	    libacl/__acl_to_any_text.c
     
     ./configure	--prefix=/usr       \
-				--disable-static	\
+				--disable-static    \
 				--libexecdir=/usr/lib
     
     make $MAKE_PARALLEL
@@ -40,7 +41,7 @@ function instal() {
     chmod -v 755 /usr/lib/libacl.so
     
     mv -v /usr/lib/libacl.so.* /lib
-    ln -sfv ../../../lib/$(readlink /usr/lib/libacl.so) /usr/lib/libacl.so
+    ln -sfv ../../lib/$(readlink /usr/lib/libacl.so) /usr/lib/libacl.so
 }
 
 function clean() {

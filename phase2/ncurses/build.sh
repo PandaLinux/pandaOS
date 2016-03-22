@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="ncurses"
 PKG_VERSION="6.0"
@@ -36,12 +37,12 @@ function instal() {
     make $MAKE_PARALLEL install
     
     mv -v /usr/lib/libncursesw.so.6* /lib
-    ln -sfv ../../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so
+    ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so
     
     for lib in ncurses form panel menu ; do
-	rm -vf                    /usr/lib/lib${lib}.so
-	echo "INPUT(-l${lib}w)" > /usr/lib/lib${lib}.so
-	ln -sfv ${lib}w.pc        /usr/lib/pkgconfig/${lib}.pc
+		rm -vf                    /usr/lib/lib${lib}.so
+		echo "INPUT(-l${lib}w)" > /usr/lib/lib${lib}.so
+		ln -sfv ${lib}w.pc        /usr/lib/pkgconfig/${lib}.pc
     done
     
     rm -vf                     /usr/lib/libcursesw.so

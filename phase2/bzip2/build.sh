@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="bzip2"
 PKG_VERSION="1.0.6"
@@ -18,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../bzip2-1.0.6-install_docs-1.patch
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-install_docs-1.patch
     sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
     sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
     
@@ -36,7 +37,7 @@ function instal() {
     
     cp -v bzip2-shared /bin/bzip2
     cp -av libbz2.so* /lib
-    ln -sv ../../../lib/libbz2.so.1.0 /usr/lib/libbz2.so
+    ln -sv ../../lib/libbz2.so.1.0 /usr/lib/libbz2.so
     rm -v /usr/bin/{bunzip2,bzcat,bzip2}
     ln -sv bzip2 /bin/bunzip2
     ln -sv bzip2 /bin/bzcat
