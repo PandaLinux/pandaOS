@@ -6,6 +6,7 @@ shopt -s -o pipefail
 function build() {
     cat > /etc/inputrc << "EOF"
 # Begin /etc/inputrc
+# Modified by Chris Lynn <roryo@roryo.dynup.net>
 
 # Allow the command prompt to wrap to the next line
 set horizontal-scroll-mode Off

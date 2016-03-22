@@ -31,7 +31,7 @@ nameserver 8.8.4.4
 # End /etc/resolv.conf
 EOF
     
-    echo "panda-linux" > /etc/hostname
+    echo "panda" > /etc/hostname
         
     cat > /etc/hosts << "EOF"
 # Begin /etc/hosts (network card version)
