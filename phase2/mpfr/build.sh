@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="mpfr"
 PKG_VERSION="3.1.3"
@@ -18,8 +19,9 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../mpfr-3.1.3-upstream_fixes-1.patch
-	./configure	--prefix=/usr    \
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-upstream_fixes-2.patch
+    ./configure --prefix=/usr    \
+				--disable-static \
 				--enable-thread-safe
     make $MAKE_PARALLEL
 }
