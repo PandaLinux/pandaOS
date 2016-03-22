@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="flex"
-PKG_VERSION="2.5.39"
+PKG_VERSION="2.6.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -17,10 +17,8 @@ function unpack() {
     tar xf ${TARBALL}
 }
 
-function build() {
-    sed -i -e '/test-bison/d' tests/Makefile.in
-    
-    ./configure --prefix=/usr
+function build() {    
+    ./configure --prefix=/usr --disable-static
     make $MAKE_PARALLEL
 }
 
