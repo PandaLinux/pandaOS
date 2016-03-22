@@ -19,7 +19,7 @@ function unpack() {
 
 function build() {    
     PAGE=A4 ./configure --prefix=/usr
-    make $MAKE_PARALLEL
+    make -j1
 }
 
 function check() {
@@ -27,7 +27,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL install
+    make -j1 install
 }
 
 function clean() {
