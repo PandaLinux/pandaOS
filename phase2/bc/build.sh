@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="bc"
 PKG_VERSION="1.06.95"
@@ -18,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../bc-1.06.95-memory_leak-1.patch
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-memory_leak-1.patch
     
     ./configure --prefix=/usr           \
 				--with-readline
