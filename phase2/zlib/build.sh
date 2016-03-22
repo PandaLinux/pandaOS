@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="zlib"
 PKG_VERSION="1.2.8"
@@ -29,7 +30,7 @@ function check() {
 function instal() {
     make $MAKE_PARALLEL install
     mv -v /usr/lib/libz.so.* /lib
-    ln -sfv ../../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
+    ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
 }
 
 function clean() {
