@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="util-linux"
-PKG_VERSION="2.27"
+PKG_VERSION="2.27.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -34,7 +35,7 @@ function build() {
 
 function check() {
     chown -Rv nobody .
-    su nobody -s /bin/bash -c "PATH=$PATH make $MAKE_PARALLEL -k check"
+    su nobody -s /bin/bash -c "PATH=$PATH make -k check"
 }
 
 function instal() {
