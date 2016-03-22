@@ -2,7 +2,6 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
-set -e 		# Exit on error
 
 PKG_NAME="gcc"
 PKG_VERSION="5.3.0"
@@ -22,7 +21,7 @@ function unpack() {
 function build() {	
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    SED=sed 			 	  \
+    SED=sed 			 	  			  \
     ../configure --prefix=/usr            \
 				 --enable-languages=c,c++ \
 				 --disable-multilib       \
