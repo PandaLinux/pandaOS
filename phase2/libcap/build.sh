@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="libcap"
-PKG_VERSION="2.24"
+PKG_VERSION="2.25"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -31,7 +32,7 @@ function instal() {
     chmod -v 755 /usr/lib/libcap.so
     
     mv -v /usr/lib/libcap.so.* /lib
-    ln -sfv ../../../lib/$(readlink /usr/lib/libcap.so) /usr/lib/libcap.so
+    ln -sfv ../../lib/$(readlink /usr/lib/libcap.so) /usr/lib/libcap.so
 }
 
 function clean() {
