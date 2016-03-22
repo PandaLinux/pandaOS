@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="procps-ng"
 PKG_VERSION="3.3.11"
@@ -18,11 +19,12 @@ function unpack() {
 }
 
 function build() {
-    ./configure --prefix=/usr				 \
-				--exec-prefix=				 \
-				--libdir=/usr/lib			 \
-				--disable-static			 \
-				--disable-kill
+    ./configure --prefix=/usr		\
+				--exec-prefix=		\
+				--libdir=/usr/lib	\
+				--disable-static	\
+				--disable-kill		\
+				--with-systemd
     make $MAKE_PARALLEL
 }
 
@@ -35,7 +37,7 @@ function instal() {
     make $MAKE_PARALLEL install
     
     mv -v /usr/lib/libprocps.so.* /lib
-    ln -sfv ../../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so
+    ln -sfv ../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so
 }
 
 function clean() {
