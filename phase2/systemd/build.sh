@@ -2,7 +2,6 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
-set -e 		# Exit on error
 
 PKG_NAME="systemd"
 PKG_VERSION="229"
