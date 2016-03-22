@@ -4,18 +4,18 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="glibc"
-PKG_VERSION="2.22"
+PKG_VERSION="2.23"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 BUILD_DIR="${PKG_NAME}-build"
 
-TARBALL_TZ="tzdata2015f.tar.gz"
-SRC_DIR_TZ="tzdata2015f"
+TARBALL_TZ="tzdata2016a.tar.gz"
+SRC_DIR_TZ="tzdata2016a"
 
 function prepare() {
     ln -sv "/source/$TARBALL" "$TARBALL"
-	ln -sv "/source/$TARBALL_TZ" "$TARBALL_TZ"
+    ln -sv "/source/$TARBALL_TZ" "$TARBALL_TZ"
 }
 
 function unpack() {
@@ -23,7 +23,7 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../glibc-2.22-fhs-1.patch
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-fhs-1.patch
     
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
@@ -77,9 +77,9 @@ EOF
 
     for tz in etcetera southamerica northamerica europe africa antarctica  \
 	      asia australasia backward pacificnew systemv; do
-	zic -L /dev/null   -d $ZONEINFO       -y "sh yearistype.sh" ${tz}
-	zic -L /dev/null   -d $ZONEINFO/posix -y "sh yearistype.sh" ${tz}
-	zic -L leapseconds -d $ZONEINFO/right -y "sh yearistype.sh" ${tz}
+		zic -L /dev/null   -d $ZONEINFO       -y "sh yearistype.sh" ${tz}
+		zic -L /dev/null   -d $ZONEINFO/posix -y "sh yearistype.sh" ${tz}
+		zic -L leapseconds -d $ZONEINFO/right -y "sh yearistype.sh" ${tz}
     done
 
     cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
