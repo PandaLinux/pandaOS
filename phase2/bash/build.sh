@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="bash"
 PKG_VERSION="4.3.30"
@@ -18,10 +19,9 @@ function unpack() {
 }
 
 function build() {
-    patch -Np1 -i ../bash-4.3.30-upstream_fixes-2.patch
+    patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-upstream_fixes-3.patch
     
     ./configure --prefix=/usr                       \
-				--bindir=/bin                       \
 				--without-bash-malloc               \
 				--with-installed-readline
     make $MAKE_PARALLEL
@@ -29,11 +29,12 @@ function build() {
 
 function check() {
     chown -Rv nobody .
-    su nobody -s /bin/bash -c "PATH=$PATH make $MAKE_PARALLEL tests"
+    su nobody -s /bin/bash -c "PATH=$PATH make tests"
 }
 
 function instal() {
     make $MAKE_PARALLEL install
+    mv -vf /usr/bin/bash /bin
 }
 
 function clean() {
