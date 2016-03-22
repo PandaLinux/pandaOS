@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e 		# Exit on error
 
 PKG_NAME="gcc"
-PKG_VERSION="5.2.0"
+PKG_VERSION="5.3.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -21,7 +22,7 @@ function unpack() {
 function build() {	
     mkdir "${BUILD_DIR}" &&
     cd "${BUILD_DIR}" &&
-    SED=sed 			 \
+    SED=sed 			 	  \
     ../configure --prefix=/usr            \
 				 --enable-languages=c,c++ \
 				 --disable-multilib       \
@@ -33,15 +34,15 @@ function build() {
 function check() {
     ulimit -s 32768
     make $MAKE_PARALLEL -k check
-    ../contrib/test_summary
+    ../contrib/test_summary | grep -A7 Summ
 }
 
 function instal() {
     make $MAKE_PARALLEL install
-    ln -sv ../../../../usr/bin/cpp /lib
+    ln -sv ../usr/bin/cpp /lib
     ln -sv gcc /usr/bin/cc
     install -v -dm755 /usr/lib/bfd-plugins
-    ln -sfv ../../../../libexec/gcc/$(gcc -dumpmachine)/5.2.0/liblto_plugin.so /usr/lib/bfd-plugins/
+    ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/$PKG_VERSION/liblto_plugin.so /usr/lib/bfd-plugins/
 }
 
 function sanityCheck() {
@@ -64,4 +65,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "${BUILD_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;sanityCheck;popd;clean
