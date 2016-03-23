@@ -2,11 +2,12 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="curl"
-PKG_VERSION="7.45.0"
+PKG_VERSION="7.47.1"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.lzma"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
@@ -29,10 +30,7 @@ function check() {
 }
 
 function instal() {
-    make $MAKE_PARALLEL install &&
-	find docs \( -name Makefile\* -o -name \*.1 -o -name \*.3 \) -exec rm {} \; &&
-	install -v -dm755 /usr/share/doc/curl-7.45.0 &&
-	cp -rv docs/*     /usr/share/doc/curl-7.45.0
+    make $MAKE_PARALLEL install
 }
 
 function clean() {
