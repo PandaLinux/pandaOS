@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libgcrypt"
-PKG_VERSION="1.6.4"
+PKG_VERSION="1.6.3"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -30,7 +31,7 @@ function instal() {
     make $MAKE_PARALLEL install
     	                
 	mv -v /usr/lib/libgcrypt.so.* /lib
-	ln -sfv ../../../lib/$(readlink /usr/lib/libgcrypt.so) /usr/lib/libgcrypt.so
+	ln -sfv ../../lib/$(readlink /usr/lib/libgcrypt.so) /usr/lib/libgcrypt.so
 }
 
 function clean() {
