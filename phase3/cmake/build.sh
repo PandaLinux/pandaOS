@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="cmake"
-PKG_VERSION="3.4.0"
+PKG_VERSION="3.4.3"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -21,11 +21,11 @@ function build() {
     ./bootstrap --prefix=/usr       \
 	            --system-libs       \
     	        --no-system-jsoncpp
-	make $MAKE_PARALLEL    	        
+	make $MAKE_PARALLEL
 }
 
 function check() {
-	bin/ctest
+	bin/ctest $MAKE_PARALLEL -O cmake-test.log
 }
 
 function instal() {
