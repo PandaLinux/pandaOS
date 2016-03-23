@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libgpg-error"
-PKG_VERSION="1.20"
+PKG_VERSION="1.19"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -30,7 +31,7 @@ function instal() {
     make $MAKE_PARALLEL install
 	
 	mv -v /usr/lib/libgpg-error.so.* /lib
-	ln -sfv ../../../lib/$(readlink /usr/lib/libgpg-error.so) /usr/lib/libgpg-error.so
+	ln -sfv ../../lib/$(readlink /usr/lib/libgpg-error.so) /usr/lib/libgpg-error.so
 }
 
 function clean() {
