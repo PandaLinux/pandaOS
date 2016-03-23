@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="gnupg"
-PKG_VERSION="2.1.7"
+PKG_VERSION="2.0.28"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
