@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="Linux-PAM"
-PKG_VERSION="1.2.1"
+PKG_VERSION="1.2.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -46,7 +47,7 @@ function instal() {
 	for file in pam pam_misc pamc
 	do
 		mv -v /usr/lib/lib${file}.so.* /lib &&
-		ln -sfv ../../../lib/$(readlink /usr/lib/lib${file}.so) /usr/lib/lib${file}.so
+		ln -sfv ../../lib/$(readlink /usr/lib/lib${file}.so) /usr/lib/lib${file}.so
 	done
 	
 	install -v -dm755 /etc/pam.d
@@ -73,8 +74,7 @@ session   required    pam_unix.so
 
 # End /etc/pam.d/system-session
 EOF
-
-	rm /etc/pam.d/system-password &&
+	
 	cat > /etc/pam.d/system-password << "EOF"
 # Begin /etc/pam.d/system-password
 
@@ -110,7 +110,7 @@ EOF
 function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
     # Re-install shadow
-    rm -rf /phase3/shadow/DONE
+    rm -rfv /phase3/shadow/DONE
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
