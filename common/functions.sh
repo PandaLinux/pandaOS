@@ -75,8 +75,3 @@ function enterChroot() {
     
     sudo umount -l "$MOUNT_POINT/dev"
 }
-
-# Update Grub
-function updateGrub() {
-    sudo /usr/sbin/update-grub
-}
