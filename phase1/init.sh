@@ -8,66 +8,6 @@ _list=(binutils-pass-1 gcc-pass-1 linux-api-headers glibc libstdcxx binutils-pas
 
 for i in ${_list[@]}; do
     case $i in
-        tcl ) 
-            if [ $MAKE_CHECK = TRUE ]
-            then
-                pushd tcl
-                    if [ -e DONE ]; then
-                        echo "tcl --> Already Built"
-                    else
-                        echo "Building ---> tcl"
-                        ( ./build.sh |& tee build.log ) || false
-                        echo "Build ---> tcl completed"
-                        touch DONE
-                    fi
-                popd
-            fi ;;
-            
-        expect ) 
-            if [ $MAKE_CHECK = TRUE ]
-            then
-                pushd expect
-                    if [ -e DONE ]; then
-                        echo "expect --> Already Built"
-                    else
-                        echo "Building ---> expect"
-                        ( ./build.sh |& tee build.log ) || false
-                        echo "Build ---> expect completed"
-                        touch DONE
-                    fi
-                popd
-            fi ;;
-            
-        dejagnu ) 
-            if [ $MAKE_CHECK = TRUE ]
-            then
-                pushd dejagnu
-                    if [ -e DONE ]; then
-                        echo "dejagnu --> Already Built"
-                    else
-                        echo "Building ---> dejagnu"
-                        ( ./build.sh |& tee build.log ) || false
-                        echo "Build ---> dejagnu completed"
-                        touch DONE
-                    fi
-                popd
-            fi ;;
-
-	check ) 
-            if [ $MAKE_CHECK = TRUE ]
-            then
-                pushd check
-                    if [ -e DONE ]; then
-                        echo "check --> Already Built"
-                    else
-                        echo "Building ---> check"
-                        ( ./build.sh |& tee build.log ) || false
-                        echo "Build ---> check completed"
-                        touch DONE
-                    fi
-                popd
-            fi ;;
-        
         * ) 
             pushd ${i} || (echo "${i} --> Not found in list error -->$?";exit 1)
                 if [ -e DONE ]; then
