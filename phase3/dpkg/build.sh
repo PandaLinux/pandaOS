@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="dpkg"
-PKG_VERSION="1.17.25"
+PKG_VERSION="1.18.4"
 
 TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,7 +19,6 @@ function unpack() {
 }
 
 function build() {
-	patch -p0 -i ../dpkg-gzip-rsyncable.patch
     autoreconf -f -i
     ./configure --prefix=/usr 				\
     			--sysconfdir=/etc 			\
@@ -26,6 +26,7 @@ function build() {
     			--sbindir=/usr/bin			\
     			--disable-start-stop-daemon	\
     			--with-zlib					\
+    			--with-bz2					\
     			--with-liblzma				&&
     make $MAKE_PARALLEL
 }
@@ -36,6 +37,7 @@ function check() {
 
 function instal() {
     make $MAKE_PARALLEL install
+	install -d "/var/dpkg/updates/"
     touch /var/lib/${PKG_NAME}/{status,available}
 }
 
