@@ -2,13 +2,14 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="cracklib"
-PKG_VERSION="2.9.6"
+PKG_VERSION="2.9.4"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
-WORDS="${PKG_NAME}-words-${PKG_VERSION}.gz"
+WORDS="${PKG_NAME}-words-20080507.gz"
 
 function prepare() {
     ln -sv "/source/$TARBALL" "$TARBALL"
@@ -35,14 +36,14 @@ function check() {
 function instal() {
     make $MAKE_PARALLEL install			&&
 	mv -v /usr/lib/libcrack.so.* /lib 	&&
-	ln -sfv ../../../lib/$(readlink /usr/lib/libcrack.so) /usr/lib/libcrack.so
+	ln -sfv ../../lib/$(readlink /usr/lib/libcrack.so) /usr/lib/libcrack.so
 	
 	install -v -m644 -D    ../${WORDS} \
 	                         /usr/share/dict/cracklib-words.gz     		&&
 
 	gunzip -v                /usr/share/dict/cracklib-words.gz     		&&
 	ln -v -sf cracklib-words /usr/share/dict/words                 		&&
-	echo "panda-linux" >>    /usr/share/dict/cracklib-extra-words  		&&
+	echo $(hostname) >>      /usr/share/dict/cracklib-extra-words  		&&
 	install -v -m755 -d      /lib/cracklib                         		&&
 
 	create-cracklib-dict     /usr/share/dict/cracklib-words \
