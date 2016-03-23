@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="apt"
-PKG_VERSION="1.2"
+PKG_VERSION="1.2.7"
 
 TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
