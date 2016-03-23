@@ -41,23 +41,23 @@ function instal() {
 	
 	install -v -m644 /etc/login.defs /etc/login.defs.orig &&
 	for FUNCTION in FAIL_DELAY               \
-    	            FAILLOG_ENAB             \
-    	            LASTLOG_ENAB             \
-    	            MAIL_CHECK_ENAB          \
-    	            OBSCURE_CHECKS_ENAB      \
-    	            PORTTIME_CHECKS_ENAB     \
-    	            QUOTAS_ENAB              \
-    	            CONSOLE MOTD_FILE        \
-    	            FTMP_FILE NOLOGINS_FILE  \
-    	            ENV_HZ PASS_MIN_LEN      \
-    	            SU_WHEEL_ONLY            \
-    	            CRACKLIB_DICTPATH        \
-    	            PASS_CHANGE_TRIES        \
-    	            PASS_ALWAYS_WARN         \
-    	            CHFN_AUTH ENCRYPT_METHOD \
-    	            ENVIRON_FILE
+					FAILLOG_ENAB             \
+					LASTLOG_ENAB             \
+					MAIL_CHECK_ENAB          \
+					OBSCURE_CHECKS_ENAB      \
+					PORTTIME_CHECKS_ENAB     \
+					QUOTAS_ENAB              \
+					CONSOLE MOTD_FILE        \
+					FTMP_FILE NOLOGINS_FILE  \
+					ENV_HZ PASS_MIN_LEN      \
+					SU_WHEEL_ONLY            \
+					CRACKLIB_DICTPATH        \
+					PASS_CHANGE_TRIES        \
+					PASS_ALWAYS_WARN         \
+					CHFN_AUTH ENCRYPT_METHOD \
+					ENVIRON_FILE
 	do
-    	sed -i "s/^${FUNCTION}/# &/" /etc/login.defs
+		sed -i "s/^${FUNCTION}/# &/" /etc/login.defs
 	done
 	
 	cat > /etc/pam.d/login << "EOF"

@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="lsb-release"
 PKG_VERSION="1.4"

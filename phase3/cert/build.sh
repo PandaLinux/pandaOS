@@ -230,5 +230,4 @@ install BLFS-ca-bundle*.crt ${SSLDIR}/ca-bundle.crt          &&
 ln -sfv ../ca-bundle.crt ${SSLDIR}/certs/ca-certificates.crt &&
 unset SSLDIR
 
-echo ca-directory=/etc/ssl/certs >> /etc/wgetrc
 rm -r certs BLFS-ca-bundle*

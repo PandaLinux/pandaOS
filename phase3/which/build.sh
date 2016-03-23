@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="which"
 PKG_VERSION="2.21"

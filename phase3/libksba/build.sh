@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libksba"
 PKG_VERSION="1.3.3"
