@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="mesa"
-PKG_VERSION="11.0.2"
+PKG_VERSION="11.1.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -24,6 +24,7 @@ function build() {
     	        --enable-texture-float       \
     	        --enable-gles1               \
     	        --enable-gles2               \
+    	        --enable-xa                  \
     	        --enable-glx-tls             \
     	        --enable-osmesa              \
     	        --with-egl-platforms="drm,x11,wayland" \
