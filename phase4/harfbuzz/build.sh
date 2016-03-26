@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="harfbuzz"
-PKG_VERSION="1.1.0"
+PKG_VERSION="1.1.3"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -32,6 +32,7 @@ function instal() {
 
 function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
+    # Re-install freetype
     rm -rf /phase4/freetype/DONE
 }
 
