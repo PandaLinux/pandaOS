@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="glib"
 PKG_VERSION="2.46.2"
@@ -18,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr --with-pcre=system &&
+	./configure --prefix=/usr --with-pcre=system --with-python=/usr/bin/python3 &&
 	make $MAKE_PARALLEL
 }
 
