@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="systemd"
-PKG_VERSION="224"
+PKG_VERSION="229"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,12 +18,13 @@ function unpack() {
 }
 
 function build() {
-	patch -Np1 -i ../systemd-${PKG_VERSION}-compat-1.patch
+	patch -Np1 -i ../${PKG_NAME}-${PKG_VERSION}-compat-1.patch
 	
 	sed -e 's:test/udev-test.pl ::g'  \
 	    -e 's:test-copy$(EXEEXT) ::g' \
     	-i Makefile.in
-    	
+    
+    PYTHON=python3					   \	
     cc_cv_CFLAGS__flto=no              \
 	./configure --prefix=/usr          \
     	        --sysconfdir=/etc      \
@@ -48,7 +49,6 @@ function instal() {
 	
 	mv -v /usr/lib/libnss_{myhostname,mymachines,resolve}.so.2 /lib
 	rm -rfv /usr/lib/rpm
-	sed -i "s:0775 root lock:0755 root root:g" /usr/lib/tmpfiles.d/legacy.conf
 	
 	cat >> /etc/pam.d/system-session << "EOF" &&
 # Begin Systemd addition
