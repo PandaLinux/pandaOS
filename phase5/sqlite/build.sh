@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="sqlite"
-PKG_VERSION="3090200"
+PKG_VERSION="3110000"
 
 TARBALL="${PKG_NAME}-autoconf-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-autoconf-${PKG_VERSION}"
@@ -18,12 +19,13 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr --disable-static        			\
-	            CFLAGS="-g -O2 -DSQLITE_ENABLE_FTS3=1 			\
-			            -DSQLITE_ENABLE_COLUMN_METADATA=1     	\
-			            -DSQLITE_ENABLE_UNLOCK_NOTIFY=1       	\
-			            -DSQLITE_SECURE_DELETE=1" &&
-	make $MAKE_PARALLEL
+	./configure --prefix=/usr --disable-static        \
+				CFLAGS="-g -O2 -DSQLITE_ENABLE_FTS3=1 \
+				-DSQLITE_ENABLE_COLUMN_METADATA=1     \
+				-DSQLITE_ENABLE_UNLOCK_NOTIFY=1       \
+				-DSQLITE_SECURE_DELETE=1              \
+				-DSQLITE_ENABLE_DBSTAT_VTAB=1" &&
+	make -j1
 }
 
 function check() {
@@ -31,7 +33,7 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install
+	make -j1 install
 }
 
 function clean() {
