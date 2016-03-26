@@ -18,7 +18,9 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr &&
+	./configure --prefix=/usr										\
+				--with-package-name="GStreamer Base Plugins 1.6.3" 	\
+				--with-package-origin="http://panda-linux.esy.es/ftp/panda/" &&
 	make $MAKE_PARALLEL
 }
 
