@@ -1,8 +1,8 @@
 #!/bin/sh
 
-set -e		# This package can not be installed via a chrooted env
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="icu"
 PKG_VERSION="4c-56_1"
@@ -19,20 +19,24 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr &&
-	make $MAKE_PARALLEL
+	cd source
+    ./configure --prefix=/usr 		\
+				--sysconfdir=/etc 	\
+				--sbindir=/usr/bin 	\
+				--enable-static
+	make -j1
 }
 
 function check() {
-	make $MAKE_PARALLEL check
+    make -j1 -k check
 }
 
 function instal() {
-	make $MAKE_PARALLEL install
+    make -j1 install
 }
 
 function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR}/source;build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
