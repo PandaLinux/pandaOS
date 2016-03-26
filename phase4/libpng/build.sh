@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="libpng"
-PKG_VERSION="1.6.19"
+PKG_VERSION="1.6.21"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,6 +18,7 @@ function unpack() {
 }
 
 function build() {
+	patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-apng.patch
 	./configure --prefix=/usr --disable-static &&
 	make $MAKE_PARALLEL
 }
