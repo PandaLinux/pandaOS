@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libxml2"
-PKG_VERSION="2.9.2"
+PKG_VERSION="2.9.3"
 
 TEST_TARBALL="xmlts20130923.tar.gz"
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
@@ -17,6 +18,7 @@ function prepare() {
 
 function unpack() {
     tar xf ${TARBALL}
+    tar xf ${TEST_TARBALL}
 }
 
 function build() {
@@ -30,8 +32,7 @@ function build() {
 	make $MAKE_PARALLEL
 }
 
-function check() {
-	tar xf ../${TEST_TARBALL}
+function check() {	
 	make $MAKE_PARALLEL check
 }
 
