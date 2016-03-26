@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="Python"
-PKG_VERSION="2.7.10"
+PKG_VERSION="2.7.11"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -27,7 +27,7 @@ function build() {
 }
 
 function check() {
-	make $MAKE_PARALLEL test
+	make $MAKE_PARALLEL -k test
 }
 
 function instal() {
