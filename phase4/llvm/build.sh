@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="llvm"
-PKG_VERSION="3.7.0"
+PKG_VERSION="3.7.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.src.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}.src"
@@ -19,19 +19,21 @@ function unpack() {
 }
 
 function build() {
-	sed -e "s:/docs/llvm:/share/doc/${PKG_NAME}-${PKG_VERSION}:" \
-	    -i Makefile.config.in &&
+	sed -e "s:/docs/llvm:/share/doc/llvm-3.7.1:" \
+    -i Makefile.config.in &&
 	    
 	mkdir "$BUILD_DIR" &&
 	cd "$BUILD_DIR"
 
-	CC=gcc CXX=g++                   \
-	../configure --prefix=/usr       \
-    	        --sysconfdir=/etc    \
-    	        --enable-libffi      \
-    	        --enable-optimized   \
-    	        --enable-shared      \
-    	        --disable-assertions &&
+	CC=gcc CXX=g++                   	\
+	../configure --prefix=/usr          \
+             --datarootdir=/usr/share   \
+             --sysconfdir=/etc          \
+             --enable-libffi            \
+             --enable-optimized         \
+             --enable-shared            \
+             --enable-targets=host,r600 \
+             --disable-assertions 		&&
 	make $MAKE_PARALLEL
 }
 
