@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 function prepare() {
     cat > /etc/profile.d/kf5.sh << "EOF"
@@ -50,6 +51,9 @@ EOF
 	
 	install -v -dm755 $KF5_PREFIX/share/icons &&
 	ln -sfv /usr/share/icons/hicolor $KF5_PREFIX/share/icons
+	
+	mv /opt/kf5{,-5.18.0}
+	ln -sfv kf5-5.18.0 /opt/kf5
 }
 
 prepare;

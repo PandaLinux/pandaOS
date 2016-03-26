@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="xcb-util-renderutil"
 PKG_VERSION="0.3.9"
