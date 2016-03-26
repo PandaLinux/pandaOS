@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="Python"
-PKG_VERSION="3.5.0"
+PKG_VERSION="3.5.1"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,7 +18,7 @@ function unpack() {
 }
 
 function build() {
-	CXX="/usr/bin/g++" 				\
+	CXX="/usr/bin/g++"              \
 	./configure --prefix=/usr       \
 	            --enable-shared     \
     	        --with-system-expat \
@@ -28,7 +28,16 @@ function build() {
 }
 
 function check() {
-	echo " "
+	make $MAKE_PARALLEL clean
+	CXX="/usr/bin/g++"              \
+	./configure --prefix=/usr       \
+	            --enable-shared     \
+    	        --with-system-expat \
+    	        --with-system-ffi   \
+    	        --without-ensurepip \
+    	        --with-pydebug		&&
+	make $MAKE_PARALLEL				&&
+	make $MAKE_PARALLEL test
 }
 
 function instal() {
@@ -41,4 +50,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;instal;[[ $MAKE_CHECK = TRUE ]] && check;popd;clean
