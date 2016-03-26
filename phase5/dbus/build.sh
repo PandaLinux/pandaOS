@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="dbus"
-PKG_VERSION="1.8.20"
+PKG_VERSION="1.10.6"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -34,7 +34,7 @@ function instal() {
 	make $MAKE_PARALLEL install
 	
 	mv -v /usr/lib/libdbus-1.so.* /lib
-	ln -sfv ../../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so
+	ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so
 	
 	cat > /etc/dbus-1/session-local.conf << "EOF"
 <!DOCTYPE busconfig PUBLIC
@@ -53,4 +53,4 @@ function clean() {
     rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
-clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean
+clean;prepare;unpack;pushd ${SRC_DIR};build;;[[ $MAKE_CHECK = TRUE ]] && checkinstal;popd;clean
