@@ -4,7 +4,7 @@ set +h		# disable hashall
 shopt -s -o pipefail
 
 PKG_NAME="ruby"
-PKG_VERSION="2.2.3"
+PKG_VERSION="2.3.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -24,7 +24,7 @@ function build() {
 }
 
 function check() {
-	make $MAKE_PARALLEL test
+	make $MAKE_PARALLEL check
 }
 
 function instal() {
