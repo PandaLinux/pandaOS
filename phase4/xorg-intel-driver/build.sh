@@ -2,12 +2,13 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="xf86-video-intel"
-PKG_VERSION="2.99.917"
+PKG_VERSION="0340718"
 
-TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.bz2"
-SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
+TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
+SRC_DIR="${PKG_NAME}"
 
 function prepare() {
     ln -sv "/source/$TARBALL" "$TARBALL"
