@@ -93,6 +93,7 @@ session  required       pam_unix.so
 EOF
 
 	systemctl enable sddm
+	echo "source /etc/profile.d/dircolors.sh" >> /etc/bashrc	
 }
 
 function clean() {
