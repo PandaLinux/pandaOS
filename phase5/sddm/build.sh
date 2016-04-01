@@ -7,18 +7,14 @@ PKG_NAME="sddm"
 PKG_VERSION="0.13.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-SYSTEMD_UNIT_TARBALL="blfs-bootscripts-20150924.tar.bz2"
-SYSTEMD_UNIT="blfs-bootscripts-20150924"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 function prepare() {
     ln -sv "/source/$TARBALL" "$TARBALL"
-	ln -sv "/source/$SYSTEMD_UNIT_TARBALL" "$SYSTEMD_UNIT_TARBALL"
 }
 
 function unpack() {
     tar xf ${TARBALL}
-    tar xf ${SYSTEMD_UNIT_TARBALL}
 }
 
 function build() {
@@ -27,20 +23,13 @@ function build() {
     	     -d /var/lib/sddm \
     	     -u 64 -g sddm    \
     	     -s /bin/false sddm
-    	     
-	sed -e '/UPOWER_SERVICE)/ s:^://:' \
-    	-i src/daemon/PowerManager.cpp &&
-	sed -e 's/eval exec/& ck-launch-session /' \
-    	-i data/scripts/Xsession
     	
 	mkdir build &&
 	cd    build &&
 
 	cmake -DCMAKE_INSTALL_PREFIX=/usr \
     	  -DCMAKE_BUILD_TYPE=Release  \
-    	  -DENABLE_JOURNALD=OFF       \
-    	  -DDBUS_CONFIG_FILENAME=sddm_org.freedesktop.DisplayManager.conf \
-    	  -Wno-dev .. &&
+    	  .. &&
 	make $MAKE_PARALLEL
 }
 
@@ -51,15 +40,6 @@ function check() {
 function instal() {
 	make $MAKE_PARALLEL install &&
 	install -v -dm755 -o sddm -g sddm /var/lib/sddm
-	
-	sddm --example-config > /etc/sddm.conf
-	sed -e 's/-nolisten tcp//'\
-	    -i /etc/sddm.conf
-	sed -e 's/\"none\"/\"off\"/' \
-	    -i /etc/sddm.conf
-	
-	cd /phase5/sddm/$SYSTEMD_UNIT
-	make $MAKE_PARALLEL install-sddm
 	    
 	cat > /etc/pam.d/sddm << "EOF"
 # Begin /etc/pam.d/sddm
@@ -112,13 +92,11 @@ session  required       pam_unix.so
 # End /etc/pam.d/sddm-greeter
 EOF
 
-	cp -v /etc/inittab{,-orig} &&
-	sed -i '/initdefault/ s/3/5/' /etc/inittab
-	echo "source /etc/profile.d/dircolors.sh" >> /etc/bashrc
+	systemctl enable sddm
 }
 
 function clean() {
-    rm -rf "${SRC_DIR}" "$TARBALL" "$SYSTEMD_UNIT_TARBALL"
+    rm -rf "${SRC_DIR}" "$TARBALL"
 }
 
 clean;prepare;unpack;pushd ${SRC_DIR};build;[[ $MAKE_CHECK = TRUE ]] && check;instal;popd;clean;
