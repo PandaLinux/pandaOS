@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libdbusmenu-qt"
 PKG_VERSION="0.9.3+15.10.20150604"
@@ -19,15 +20,12 @@ function unpack() {
 
 function build() {
 	mkdir build &&
-	cd    build &&
-	
-	export PATH=$PATH:/opt/qt5
+	cd    build &&	
 
 	cmake -DCMAKE_INSTALL_PREFIX=/usr \
     	  -DCMAKE_BUILD_TYPE=Release  \
     	  -DCMAKE_INSTALL_LIBDIR=lib  \
     	  -DWITH_DOC=OFF              \
-    	  -DUSE_QT5=ON				  \
     	  .. &&
 	make $MAKE_PARALLEL
 }
