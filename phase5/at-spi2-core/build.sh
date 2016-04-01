@@ -24,7 +24,7 @@ function build() {
 }
 
 function check() {
-	echo ""
+	make $MAKE_PARALLEL check
 }
 
 function instal() {
