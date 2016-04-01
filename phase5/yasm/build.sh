@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="yasm"
 PKG_VERSION="1.3.0"
@@ -29,8 +30,7 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install	
-	update-desktop-database
+	make $MAKE_PARALLEL install
 }
 
 function clean() {

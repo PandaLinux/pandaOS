@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="pango"
 PKG_VERSION="1.38.1"
@@ -23,7 +24,7 @@ function build() {
 }
 
 function check() {
-	make $MAKE_PARALLEL check
+	make $MAKE_PARALLEL -k check
 }
 
 function instal() {

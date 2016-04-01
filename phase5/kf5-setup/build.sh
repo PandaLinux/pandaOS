@@ -50,10 +50,7 @@ EOF
 	ln -sfv /usr/share/dbus-1   $KF5_PREFIX/share
 	
 	install -v -dm755 $KF5_PREFIX/share/icons &&
-	ln -sfv /usr/share/icons/hicolor $KF5_PREFIX/share/icons
-	
-	mv /opt/kf5{,-5.18.0}
-	ln -sfv kf5-5.18.0 /opt/kf5
+	ln -sfv /usr/share/icons/hicolor $KF5_PREFIX/share/icons	
 }
 
 prepare;

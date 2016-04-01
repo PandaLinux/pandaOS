@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libjpeg-turbo"
 PKG_VERSION="1.4.2"
@@ -21,7 +22,6 @@ function build() {
 	sed -i -e '/^docdir/ s:$:/libjpeg-turbo-1.4.2:' Makefile.in &&
 
 	./configure --prefix=/usr           \
-    	        --mandir=/usr/share/man \
     	        --with-jpeg8            \
     	        --disable-static &&
 	make $MAKE_PARALLEL

@@ -22,13 +22,7 @@ function build() {
 	make $MAKE_PARALLEL
 }
 
-function check() {
-	# This package comes with a test suite
-	# But the tests are very resource hungary and consumes 
-	# a lot of cpu power.
-	#
-	# make $MAKE_PARALLEL check
-	#
+function check() {	
 	echo " "
 }
 
