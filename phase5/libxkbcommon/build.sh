@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libxkbcommon"
-PKG_VERSION="0.5.0"
+PKG_VERSION="0.6.0"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,7 +19,10 @@ function unpack() {
 }
 
 function build() {
-	./configure $XORG_CONFIG &&
+	./configure --prefix=/usr 			\
+				--sysconfdir=/etc 		\
+				--localstatedir=/var 	\
+				--disable-static  		&&
 	make $MAKE_PARALLEL
 }
 
