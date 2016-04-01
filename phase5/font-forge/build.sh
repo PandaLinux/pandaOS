@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="fontforge"
 PKG_VERSION="20150824"
@@ -18,9 +19,11 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr     \
-	            --enable-gtk2-use \
-    	        --disable-static  &&
+	sed -i 's%naist.jp/pub/NetBSD/packages%netbsd.org/pub/pkgsrc%' \
+			tests/Makefile.in &&
+	./configure --prefix=/usr     	\
+				--enable-gtk2-use \
+				--disable-static	&&
 	make $MAKE_PARALLEL
 }
 
