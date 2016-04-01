@@ -18,7 +18,7 @@ function unpack() {
 }
 
 function build() {
-	patch -Np1 -i ../sgml-common-0.6.3-manpage-1.patch &&
+	patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-manpage-1.patch &&
 	autoreconf -f -i
 	
 	./configure --prefix=/usr --sysconfdir=/etc &&
@@ -31,6 +31,12 @@ function check() {
 
 function instal() {
 	make $MAKE_PARALLEL install
+	
+	install-catalog --add /etc/sgml/sgml-ent.cat \
+		/usr/share/sgml/sgml-iso-entities-8879.1986/catalog &&
+
+	install-catalog --add /etc/sgml/sgml-docbook.cat \
+		/etc/sgml/sgml-ent.cat
 }
 
 function clean() {
