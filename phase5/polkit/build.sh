@@ -22,11 +22,12 @@ function build() {
 	useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27 \
     	    -g polkitd -s /bin/false polkitd
     	    
-	sed -i "s:/sys/fs/cgroup/systemd/:/sys:g" configure
-	./configure --prefix=/usr        \
-				--sysconfdir=/etc    \
-				--localstatedir=/var \
-				--disable-static     &&
+	./configure --prefix=/usr        			\
+				--sysconfdir=/etc    			\
+				--localstatedir=/var 			\
+				--enable-libsystemd-login=yes 	\
+				--with-authfw=shadow			\
+				--disable-static     			&&
 	make $MAKE_PARALLEL
 }
 
