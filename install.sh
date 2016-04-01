@@ -20,7 +20,7 @@ EOF
 		case $yn in
 			Yes ) 
 				# Download All the packages
-				wget --input-file=wget-list --continue --directory-prefix="$PWD/source"
+				wget --input-file=wget-list --continue --directory-prefix="$PWD/source" --no-check-certificate
 				pushd "$PWD/source"
 				md5sum -c ../md5sums
 				popd;
