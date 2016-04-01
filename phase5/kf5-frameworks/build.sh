@@ -131,4 +131,4 @@ function build() {
 	ln -sfvn kf5-5.20.0 /opt/kf5
 }
 
-prepare;check;build;popd;
+prepare;check;build;
