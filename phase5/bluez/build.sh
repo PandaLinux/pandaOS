@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="bluez"
-PKG_VERSION="5.35"
+PKG_VERSION="5.37"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,7 +19,7 @@ function unpack() {
 }
 
 function build() {
-	patch -Np1 -i ../bluez-5.35-obexd_without_systemd-1.patch &&
+	patch -Np1 -i ../$PKG_NAME-$PKG_VERSION-obexd_without_systemd-1.patch &&
 	./configure --prefix=/usr        \
     	        --sysconfdir=/etc    \
     	        --localstatedir=/var \
@@ -31,10 +32,13 @@ function check() {
 }
 
 function instal() {
-	make $MAKE_PARALLEL install
+	make $MAKE_PARALLEL install &&
+	ln -svf ../libexec/bluetooth/bluetoothd /usr/sbin
 	
 	install -v -dm755 /etc/bluetooth &&
 	install -v -m644 src/main.conf /etc/bluetooth/main.conf
+	
+	systemctl enable bluetooth
 }
 
 function clean() {
