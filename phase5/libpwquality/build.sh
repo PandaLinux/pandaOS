@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libpwquality"
 PKG_VERSION="1.3.0"
@@ -18,7 +19,10 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr --disable-static &&
+	./configure --prefix=/usr             \
+				--sysconfdir=/etc         \
+				--disable-static          \
+				--with-securedir=/lib/security &&
 	make $MAKE_PARALLEL
 }
 
