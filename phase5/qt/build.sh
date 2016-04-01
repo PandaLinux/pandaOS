@@ -2,11 +2,12 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="qt"
-PKG_VERSION="5.5.0"
+PKG_VERSION="5.5.1"
 
-TARBALL="${PKG_NAME}-everywhere-opensource-src-${PKG_VERSION}.tar.gz"
+TARBALL="${PKG_NAME}-everywhere-opensource-src-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-everywhere-opensource-src-${PKG_VERSION}"
 
 function prepare() {
@@ -110,7 +111,7 @@ Categories=Qt;Development;Debugger;
 EOF
 
 	for file in moc uic rcc qmake lconvert lrelease lupdate; do
-		ln -sfrvn $QT5BINDIR/$file /usr/bin/$file-qt5
+		ln -sfrvn /opt/qt5/bin/$file /usr/bin/$file-qt5
 	done
 	
 	cat >> /etc/ld.so.conf << EOF
@@ -136,6 +137,12 @@ export QT5DIR
 # End /etc/profile.d/qt5.sh
 EOF
 }
+
+	cat > /usr/bin/setqt5 << 'EOF'
+if [ "x$QT4DIR" != "x/usr" ]; then pathremove  $QT4DIR/bin; fi
+if [ "x$QT5DIR" != "x/usr" ]; then pathprepend $QT5DIR/bin; fi
+echo $PATH
+EOF
 
 function clean() {
     rm -rf "${SRC_DIR}"
