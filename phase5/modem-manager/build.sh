@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="ModemManager"
 PKG_VERSION="1.4.10"
@@ -18,11 +19,13 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr        \
-	            --sysconfdir=/etc    \
-    	        --localstatedir=/var \
-    	        --without-mbim		 \
-    	        --without-qmi		 \
+	./configure --prefix=/usr        				\
+				--build=x86_64-unknown-linux-gnu	\
+				--host=x86_64-unknown-linux-gnu		\
+	            --sysconfdir=/etc    				\
+    	        --localstatedir=/var 				\
+    	        --without-mbim		 				\
+    	        --without-qmi						\
     	        --disable-static     &&
 	make $MAKE_PARALLEL
 }

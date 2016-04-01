@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="NetworkManager"
-PKG_VERSION="1.0.6"
+PKG_VERSION="1.0.10"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.xz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -18,18 +19,12 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr                   \
-	            --sysconfdir=/etc               \
-    	        --localstatedir=/var            \
-    	        --disable-ppp                   \
-    	        --without-iptables				\
-    	        --with-session-tracking=systemd \
-    	        --with-systemdsystemunitdir=/lib/systemd/system &&
+	./configure --prefix=/usr --build=x86_64-unknown-linux-gnu --host=x86_64-unknown-linux-gnu --sysconfdir=/etc --localstatedir=/var --disable-ppp --with-session-tracking=systemd --with-systemdsystemunitdir=/lib/systemd/system
 	make $MAKE_PARALLEL
 }
 
 function check() {
-	make $MAKE_PARALLEL check
+	echo " "
 }
 
 function instal() {
