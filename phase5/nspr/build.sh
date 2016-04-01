@@ -2,9 +2,10 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="nspr"
-PKG_VERSION="4.10.8"
+PKG_VERSION="4.12"
 
 TARBALL="${PKG_NAME}-${PKG_VERSION}.tar.gz"
 SRC_DIR="${PKG_NAME}-${PKG_VERSION}"
@@ -22,10 +23,10 @@ function build() {
 	sed -ri 's#^(RELEASE_BINS =).*#\1#' pr/src/misc/Makefile.in &&
 	sed -i 's#$(LIBRARY) ##' config/rules.mk                    &&
 
-	./configure --prefix=/usr 	\
-    	        --with-mozilla 	\
-    	        --with-pthreads \
-    	        $([ $(uname -m) = x86_64 ] && echo --enable-64bit) &&
+	./configure --prefix=/usr \
+				--with-mozilla \
+				--with-pthreads \
+				$([ $(uname -m) = x86_64 ] && echo --enable-64bit) &&
 	make $MAKE_PARALLEL
 }
 
