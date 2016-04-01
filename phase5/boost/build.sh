@@ -25,16 +25,17 @@ function build() {
     	-e '$ a#endif'            \
     	-i boost/type_traits/detail/has_binary_operator.hpp &&
 
-	./bootstrap.sh --prefix=/usr &&
-	./b2 stage threading=multi link=shared	
+	./bootstrap.sh --prefix=/usr --with-python=python3
+	./b2 $MAKE_PARALLEL stage threading=multi link=shared
 }
 
 function check() {
 	pushd tools/build/test; python test_all.py; popd
+	pushd status; ../b2 $MAKE_PARALLEL; popd
 }
 
 function instal() {
-	./b2 install threading=multi link=shared
+	./b2 $MAKE_PARALLEL install threading=multi link=shared
 }
 
 function clean() {
