@@ -2,6 +2,7 @@
 
 set +h		# disable hashall
 shopt -s -o pipefail
+set -e
 
 PKG_NAME="libndp"
 PKG_VERSION="1.5"
@@ -18,7 +19,10 @@ function unpack() {
 }
 
 function build() {
-	./configure --prefix=/usr --disable-static &&
+	./configure --prefix=/usr        \
+				--sysconfdir=/etc    \
+				--localstatedir=/var \
+				--disable-static     &&
 	make $MAKE_PARALLEL
 }
 
