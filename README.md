@@ -1,7 +1,7 @@
 ### PANDA LINUX
 ---
 
-[![Gratipay User](https://img.shields.io/gratipay/user/abhi1693.svg?style=flat-square)](https://gratipay.com/~abhi1693)
+[![Gratipay Team](https://img.shields.io/gratipay/team/Panda-Linux.svg?style=flat-square)](https://gratipay.com/Panda-Linux)
 [![GitHub forks](https://img.shields.io/github/forks/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/network)
 [![GitHub stars](https://img.shields.io/github/stars/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/PandaLinux/pandaOS/plasma/LICENSE.md)
