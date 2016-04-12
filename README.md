@@ -1,6 +1,11 @@
 ### PANDA LINUX
 ---
 
+[![Gratipay User](https://img.shields.io/gratipay/user/abhi1693.svg?style=flat-square)](https://gratipay.com/~abhi1693)
+[![GitHub forks](https://img.shields.io/github/forks/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/network)
+[![GitHub stars](https://img.shields.io/github/stars/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/PandaLinux/pandaOS/plasma/LICENSE.md)
+
 Panda Linux is an open-source and free operating system. It is a 64-bit OS for x86-64 based computers.
 
 ## Installation Instructions
