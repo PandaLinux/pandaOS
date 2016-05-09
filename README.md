@@ -1,6 +1,7 @@
 ### PANDA LINUX
 ---
 
+[![Build Status](https://travis-ci.org/PandaLinux/pandaOS.svg?branch=travis-ci)](https://travis-ci.org/PandaLinux/pandaOS)
 [![Gratipay Team](https://img.shields.io/gratipay/team/Panda-Linux.svg?style=flat-square)](https://gratipay.com/Panda-Linux)
 [![GitHub forks](https://img.shields.io/github/forks/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/network)
 [![GitHub stars](https://img.shields.io/github/stars/PandaLinux/pandaOS.svg?style=flat-square)](https://github.com/PandaLinux/pandaOS/stargazers)
